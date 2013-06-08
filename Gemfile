@@ -31,6 +31,7 @@ end
 
 group :development do
   gem 'sextant'
+  gem 'pry-rails'
 end
 
 group :test, :development do
