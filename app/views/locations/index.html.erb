@@ -1,0 +1,16 @@
+<% if user_signed_in? %>
+  <%= link_to "Return User Page",user_path(current_user) %>
+<% else %>
+  <%= link_to "Home", root_path %>
+<% end %>
+<h1>Locations</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+      </tr>
+    <% @locations.each do |location| %>
+      <tr>
+        <td><%= link_to "#{location.name}", location %></td>
+      </tr>
+    <% end %>
+</table>
