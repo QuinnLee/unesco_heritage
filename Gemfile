@@ -26,6 +26,7 @@ gem 'jquery-rails'
 group :test do
   gem "factory_girl_rails"
   gem "shoulda"
+  gem "faker"
 end
 
 group :development do

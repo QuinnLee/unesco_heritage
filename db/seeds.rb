@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require "nokogiri"
+require "open-uri"
+
+url = "http://whc.unesco.org/en/list/xml/"
+data = Nokogiri::XML(open(url))
+rows = data.css("row")
+rows.each do |row|
+  Location.create(name: row.at_css("site").
+    inner_text.gsub(/<\/?[^>]*>/, ""))
+end
