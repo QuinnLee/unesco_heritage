@@ -1,3 +1,15 @@
 user#show
 <p class="notice"><%= notice %></p>
 <%= link_to "View Locations", locations_path %>
+<%= pluralize(current_user.locations.size,'Destination') %>
+<h1>Locations</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+      </tr>
+    <% current_user.locations.each do |location| %>
+      <tr>
+        <td><%= link_to "#{location.name}", location %></td>
+      </tr>
+    <% end %>
+</table>

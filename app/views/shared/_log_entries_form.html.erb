@@ -1,0 +1,13 @@
+<% form_for @new_comment do |f| %>
+  <% @locations.names.each do |name| %>
+    <div>
+      <h3>
+        <%= f.radio_button(:name) %>
+        <%= f.label_tag(:name, "#{name}") %>
+        <%= f.select_date :prefix => :first_date %>
+        <%= f.select_date :prefix => :last_date %>
+      </h3>
+    </div>
+  <% end %>
+   <%= f.submit "Post Comment" %>
+<% end %>

@@ -7,3 +7,9 @@
 <p>
   <b>Description</b>
 </p>
+<% if user_signed_in? %>
+  <%= form_for [ @location, LogEntry.new] do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit "Add to Log" %>
+  <% end %>
+<% end %>
