@@ -3,11 +3,10 @@ BreakableToy::Application.routes.draw do
 
   resources :users , only: [:show]
 
-  resources :locations do
-    resources :log_entries, only: [:create]
+  resources :locations, only: [:index, :show] do
+    resources :log_entries, only: [:create, :destroy]
   end
 
-  resources :locations, only: [:index, :show]
   root :to => "home#index"
 
   

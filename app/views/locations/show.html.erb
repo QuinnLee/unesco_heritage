@@ -1,4 +1,7 @@
 <%= link_to "Return to Locations",locations_path %>
+<% if user_signed_in? %>
+  <%= link_to "Return to User Page", user_path(current_user) %>
+<% end %>
 <p>
   <b>Name:</b>
   <%= @location.name %>
@@ -7,9 +10,21 @@
 <p>
   <b>Description</b>
 </p>
+
 <% if user_signed_in? %>
-  <%= form_for [ @location, LogEntry.new] do |f| %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= form_for [@location, @log_entry] do |f| %>
     <%= f.submit "Add to Log" %>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+ <% unless @users_log_entries == nil %>
+    <% @users_log_entries.each do |log_entry| %>
+    <tr>
+      <td><%= "#{@location.name}" %></td>
+      <td><%= button_to 'Remove from Log', [@location, log_entry], method: :delete,
+        data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
   <% end %>
 <% end %>

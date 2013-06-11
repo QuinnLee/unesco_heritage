@@ -9,9 +9,7 @@ describe "a user can log in the site" do
   end
   it "redirects them to the home page" do
     visit(user_session_path)
-    fill_in "Email", with: valid_user.email
-    fill_in "Password", with: valid_user.password
-    click_button "Sign in"
+    sign_in_as(valid_user)
     expect(page).to have_content("Signed in successfully.")
   end
 end

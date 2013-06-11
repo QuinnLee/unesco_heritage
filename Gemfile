@@ -31,13 +31,13 @@ end
 
 group :development do
   gem 'sextant'
-  gem 'pry-rails'
 end
 
 group :test, :development do
   gem "rspec-rails"
   gem "capybara"
   gem "launchy"
+  gem 'pry-rails'
 end
 
 gem "nokogiri"
