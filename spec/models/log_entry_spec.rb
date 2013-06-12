@@ -3,7 +3,9 @@ require 'spec_helper'
 describe LogEntry do
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:location) }
-
+  it { should validate_presence_of(:first_date) }
+  it { should validate_presence_of(:last_date) }
+  
   describe "#set_first_date" do
     it "converts string to a date" do
       log_entry = LogEntry.new
@@ -25,4 +27,6 @@ describe LogEntry do
       expect(log_entry.last_date).to eql(valid_date)
     end
   end
+
+
 end   
