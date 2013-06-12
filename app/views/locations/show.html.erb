@@ -13,6 +13,10 @@
 
 <% if user_signed_in? %>
   <%= form_for [@location, @log_entry] do |f| %>
+    <%= f.label :first_date %>
+    <%= f.text_field :first_date %>
+    <%= f.label :last_date %>
+    <%= f.text_field :last_date %>
     <%= f.submit "Add to Log" %>
   <% end %>
 <% end %>
