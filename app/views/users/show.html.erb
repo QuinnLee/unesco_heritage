@@ -1,16 +1,18 @@
 user#show
 <p class="notice"><%= notice %></p>
 <%= link_to "View Locations", locations_path %>
-<%= pluralize(current_user.locations.size,'Destination') %>
-<%if current_user.locations.size >0 %>
+<%= pluralize(current_user.log_entries.size,'Destination') %>
+<%if current_user.log_entries.size >0 %>
   <h1>Log</h1>
       <table>
         <tr>
           <th>Name</th>
+          <th>Date Visited</th>
         </tr>
-      <% current_user.locations.each do |location| %>
+      <% current_user.log_entries.each do |log_entry| %>
         <tr>
-          <td><%= link_to "#{location.name}", location %></td>
+          <td><%= link_to "#{log_entry.location.name}", log_entry.location %></td>
+          <td><%= log_entry.first_date %></td>
         </tr>
       <% end %>
   </table>

@@ -12,6 +12,8 @@ describe "add log" do
     sign_in_as(valid_user)
     click_link ("View Locations")
     click_link("#{location.name}")
+    fill_in "First date", with: Date.current.to_s
+    fill_in "Last date", with: Date.tomorrow.to_s
     click_button  'Add to Log'
     click_link("#{location.name}")
     click_button 'Remove from Log'

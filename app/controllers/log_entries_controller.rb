@@ -15,7 +15,8 @@ class LogEntriesController < ApplicationController
 
   protected
   def create_log_entry
-    @log_entry = @location.log_entries.create(params[:log_entry])
+    binding.pry
+    @log_entry = @location.log_entries.build(params[:log_entry])
     @log_entry.user = current_user
     @log_entry.save!
   end
