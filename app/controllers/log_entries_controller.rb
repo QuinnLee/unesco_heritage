@@ -32,6 +32,4 @@ class LogEntriesController < ApplicationController
     @log_entry.user = current_user
   end
 
-
-
 end
