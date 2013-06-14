@@ -12,6 +12,9 @@ url = "http://whc.unesco.org/en/list/xml/"
 data = Nokogiri::XML(open(url))
 rows = data.css("row")
 rows.each do |row|
-  Location.create(name: row.at_css("site").
-    inner_text.gsub(/<\/?[^>]*>/, ""))
+  Location.create(
+    name: row.at_css("site").inner_text.gsub(/<\/?[^>]*>/, ""),
+    longitude: row.at_css("longitude").inner_text.to_f,
+    latitude: row.at_css("latitude").inner_text.to_f
+    )
 end

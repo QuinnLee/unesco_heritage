@@ -5,7 +5,18 @@ describe LogEntry do
   it { should validate_presence_of(:location) }
   it { should validate_presence_of(:first_date) }
   it { should validate_presence_of(:last_date) }
-  
+
+  describe "#validates_range" do
+    let(:user){FactoryGirl.create(:user)}
+    let!(:log_entry){FactoryGirl.create(:log_entry,user: user)}
+    let!(:log_entry2){FactoryGirl.build(:log_entry, user: user)}
+
+    it "doesn't set dates if invalid" do
+      expect(log_entry2).to_not be_valid
+    end
+
+  end
+
   describe "#set_first_date" do
     it "converts string to a date" do
       log_entry = LogEntry.new
