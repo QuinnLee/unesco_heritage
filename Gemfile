@@ -27,6 +27,7 @@ group :test do
   gem "factory_girl_rails"
   gem "shoulda"
   gem "faker"
+  gem "valid_attribute"
 end
 
 group :development do

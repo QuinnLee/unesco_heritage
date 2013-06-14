@@ -11,6 +11,6 @@ describe "adding a plan" do
     fill_in "Name", with: plan_name
     click_button "Create Plan"
     expect(page).to have_content("Plan has been made")
-    expect(page).to have_content(plan_name)
+    expect(Plan.last.name).to eql(plan_name)
   end
 end
