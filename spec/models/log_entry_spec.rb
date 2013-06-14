@@ -28,5 +28,4 @@ describe LogEntry do
     end
   end
 
-
 end   

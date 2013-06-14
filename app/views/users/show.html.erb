@@ -17,3 +17,10 @@ user#show
       <% end %>
   </table>
 <% end %>
+
+<%= form_for Plan.new, url: user_plans_path(current_user) do |f| %>
+  <%= f.label :name %>
+  <br>
+  <%= f.text_field :name %>
+  <%= f.submit %>
+<% end %>

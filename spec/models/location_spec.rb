@@ -5,8 +5,5 @@ describe Location do
     let (:valid_user){FactoryGirl.create(:user)}
     let!(:location){FactoryGirl.create(:location)}
     
-    it "returns all log entries scoped to user" do
-      
-    end
   end
 end
