@@ -8,11 +8,17 @@ describe LogEntry do
 
   describe "#validates_range" do
     let(:user){FactoryGirl.create(:user)}
+    let(:user_2){FactoryGirl.create(:user)}
     let!(:log_entry){FactoryGirl.create(:log_entry,user: user)}
     let!(:log_entry2){FactoryGirl.build(:log_entry, user: user)}
 
+    let!(:log_entry_valid_diff_user){FactoryGirl.build(:log_entry, user: user_2)}
     it "doesn't set dates if invalid" do
       expect(log_entry2).to_not be_valid
+    end
+
+    it "sets dates if valid" do
+      expect(log_entry_valid_diff_user).to be_valid
     end
 
   end
