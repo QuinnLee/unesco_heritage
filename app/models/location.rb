@@ -7,4 +7,8 @@ class Location < ActiveRecord::Base
   validates :name,  presence: true
 
   attr_accessible :name, :longitude, :latitude
+
+  def static_image
+    cordinates = "#{self.latitude},#{self.longitude}"
+  end
 end
