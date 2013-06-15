@@ -9,7 +9,7 @@ class LogEntry < ActiveRecord::Base
   validates :first_date, presence: true
   validates :last_date, presence: true
 
-  validates_with DateRangeValidator
+  validates_with DateRangeValidator, :uniqueness => { :scope => :user_id }
 
   attr_accessible :location, :user, :first_date, :last_date
 
@@ -22,8 +22,8 @@ class LogEntry < ActiveRecord::Base
   end
 
   class << self
-    def overlaps(first_date, last_date)
-      where "(first_date,last_date) OVERLAPS (?,?)", first_date, last_date
+    def overlaps(first_date, last_date, user_id)
+      where "(first_date,last_date) OVERLAPS (?,?) AND user_id = ?", first_date, last_date, user_id
     end
   end
 
