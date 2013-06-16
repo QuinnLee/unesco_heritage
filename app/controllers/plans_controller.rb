@@ -8,5 +8,6 @@ class PlansController < ApplicationController
 
   def show
    @plan = Plan.find(params[:id])
+   @plan_entries = @plan.locations
   end
 end

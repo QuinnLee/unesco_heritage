@@ -2,4 +2,17 @@ plan#show
 <p class="notice"><%= notice %></p>
 <%= link_to "Return User Page", user_path(current_user) %>
 <br>
-<%= @plan.name %>
+<h2><%= @plan.name %></h2>
+
+<%= pluralize(@plan_entries.size,'Destination') %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+<% @plan_entries.each do |plan_entry| %>
+  <tr>
+    <td><%= link_to "#{plan_entry.name}", plan_entry %></td>
+  </tr>
+<% end %>
+</table>

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :locations, :through => :log_entries
 
   has_many :plans
+  has_many :plan_entries, :through => :plans
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
