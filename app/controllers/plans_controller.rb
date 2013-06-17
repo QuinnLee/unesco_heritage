@@ -9,4 +9,12 @@ class PlansController < ApplicationController
    @plan = Plan.find(params[:id])
    @plan_entries = @plan.locations
   end
+
+  def destroy
+    @plan = Plan.find(params[:id])
+    flash[:notice] = "#{@plan.name} is removed"
+    @plan.destroy
+    redirect_to user_path(current_user)
+
+  end
 end
