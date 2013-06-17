@@ -9,9 +9,17 @@ class Location < ActiveRecord::Base
   validates :latitude,  presence: true
   validates :name,  presence: true
 
-  attr_accessible :name, :longitude, :latitude
+  attr_accessible :name, :longitude, :latitude, :category, :region, :states
 
   def static_image
-    cordinates = "#{self.latitude},#{self.longitude}"
+    "#{self.latitude},#{self.longitude}"
+  end
+
+  def self.categories
+    Location.uniq.pluck(:category)
+  end
+
+  def self.regions
+    Location.uniq.pluck(:region)
   end
 end

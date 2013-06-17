@@ -35,7 +35,7 @@
   <% unless @users_plan_entries == nil %>
     <% @users_plan_entries.each do |plan_entry| %>
     <tr>
-      <td><%= link_to "#{plan_entry.plan.name}", user_plan_path(current_user,plan_entry.plan) %></td>
+      <td><%= link_to "#{plan_entry.plan_name}", user_plan_path(current_user,plan_entry.plan) %></td>
       <br>
     </tr>
     <% end %>
