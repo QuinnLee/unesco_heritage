@@ -26,12 +26,5 @@ end
     expect(page).to_not have_content(second_location.name)
   end
 
-  scenario "user can search by states" do
-    visit(locations_path)
-    fill_in "Search",  with: first_location.states
-    click_button "Search"
-    expect(page).to have_content(first_location.name)
-    expect(page).to_not have_content(second_location.name)
-  end
 
 end

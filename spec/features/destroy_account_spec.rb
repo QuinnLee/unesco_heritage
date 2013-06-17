@@ -12,4 +12,5 @@ describe "a user can delete their account" do
     expect(page).to have_content("Bye! Your account was successfully cancelled. 
       We hope to see you again soon.")
   end
+  
 end
