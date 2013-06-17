@@ -1,7 +1,7 @@
 require "spec_helper"
 
 feature "add a plan entry to a plan" do
-  let (:valid_user) {FactoryGirl.create(:user)}
+  let! (:valid_user) {FactoryGirl.create(:user)}
   let!(:valid_location) {FactoryGirl.create(:location)}
   let(:plan_name){"hello"}
 

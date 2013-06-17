@@ -2,8 +2,8 @@ class PlanEntry < ActiveRecord::Base
   belongs_to :plan
   belongs_to :location
   
-  validates :location_id, presence: true
-  validates :plan_id, presence: true
+  validates :location, presence: true
+  validates :plan, presence: true
 
-  attr_accessible :location_id, :plan_id
+  attr_accessible :location, :plan
 end
