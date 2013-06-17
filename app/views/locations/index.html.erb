@@ -3,10 +3,28 @@
 <% else %>
   <%= link_to "Home", root_path %>
 <% end %>
+
+<%= search_form_for @search do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, "Search" %>
+    <%= f.text_field :name_or_states_cont, placeholder: "Search" %>
+  </div>
+  <% Location.categories.each do |category| %>
+      <%= check_box_tag('q[category_eq_any][]', category) %>
+      <%= category %>
+  <% end %>
+  <br>
+    <% Location.regions.each do |region| %>
+      <%= check_box_tag('q[region_eq_any][]', region) %>
+      <%= region %>
+  <% end %>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
 <h1>Locations</h1>
     <table>
       <tr>
-        <th>Name</th>
+        <th><%= sort_link(@search, :name, "Name") %></th>
       </tr>
     <% @locations.each do |location| %>
       <tr>

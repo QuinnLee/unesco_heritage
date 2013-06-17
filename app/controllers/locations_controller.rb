@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   def index
-    @locations = Location.all
+    @search = Location.search(params[:q])
+    @locations = @search.result
   end
 
   def show
@@ -20,6 +21,6 @@ class LocationsController < ApplicationController
   def users_plan_entries
     @users_plan_entries = current_user.plan_entries.
       where(location_id: @location) if current_user
-  end
+  end  
 
 end

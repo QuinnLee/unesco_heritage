@@ -43,7 +43,7 @@ end
 
 gem "nokogiri"
 gem "devise"
-gem "cancan"
+gem 'ransack'
 gem "chronic"
 
 # To use ActiveModel has_secure_password

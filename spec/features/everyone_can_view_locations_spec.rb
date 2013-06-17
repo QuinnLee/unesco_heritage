@@ -1,18 +1,18 @@
 require "spec_helper"
 
-describe "locations#index" do 
+feature "viewing the all the locations" do 
   before :each do
     FactoryGirl.create(:location)
   end
 
  let(:location){location = Location.first}
 
-  it "shows all locations" do
+  scenario "anyone can view the locations" do
     visit(locations_path)
     expect(page).to have_content("#{location.name}")
   end
 
-  it "locations can be clicked to see more info" do
+  scenario "locations can be clicked to see more info" do
     visit(locations_path)
     click_link "#{location.name}"
     expect(page).to have_content(location.name)
