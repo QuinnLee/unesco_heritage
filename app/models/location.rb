@@ -1,5 +1,8 @@
 class Location < ActiveRecord::Base
   has_many :log_entries
+  has_many :plan_entries
+  
+  has_many :plans, :through => :plan_entries
   has_many :users, :through => :log_entries
 
   validates :longitude,  presence: true

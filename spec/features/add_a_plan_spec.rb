@@ -5,6 +5,7 @@ feature "adding a plan" do
   let (:valid_user) do
     FactoryGirl.create(:user)
   end
+  
   let(:plan_name){"hello"}
 
   scenario "directs user to plan#new path" do

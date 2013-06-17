@@ -22,7 +22,7 @@
 <% end %>
 
 <% if user_signed_in? %>
- <% unless @users_log_entries == nil %>
+  <% unless @users_log_entries == nil %>
     <% @users_log_entries.each do |log_entry| %>
     <tr>
       <td><%= "#{@location.name}" %></td>
@@ -31,6 +31,22 @@
     </tr>
     <% end %>
   <% end %>
+  <p>This location is in <%= pluralize(@users_plan_entries.size,'plan') %></p>
+  <% unless @users_plan_entries == nil %>
+    <% @users_plan_entries.each do |plan_entry| %>
+    <tr>
+      <td><%= link_to "#{plan_entry.plan.name}", user_plan_path(current_user,plan_entry.plan) %></td>
+      <br>
+    </tr>
+    <% end %>
+  <% end %>
 <% end %>
 
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.static_image}&zoom=5&markers=#{@location.static_image}&size=600x600&sensor=false", alt: "#{@location.name}" %>
+<% if user_signed_in? && current_user.plans.count >0 %>
+  <%= form_for [@location, @plan_entry] do |f| %>
+    <%= collection_select(:plan, :id, current_user.plans, :id, :name, :prompt => true) %>
+    <%= f.submit "Add to Plan" %>
+  <% end %>
+<% end %>
+
+<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.static_image}&zoom=5&markers=#{@location.static_image}&size=600x600&sensor=true", alt: "#{@location.name}" %>
