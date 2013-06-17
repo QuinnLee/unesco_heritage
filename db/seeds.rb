@@ -15,6 +15,9 @@ rows.each do |row|
   Location.create(
     name: row.at_css("site").inner_text.gsub(/<\/?[^>]*>/, ""),
     longitude: row.at_css("longitude").inner_text.to_f,
-    latitude: row.at_css("latitude").inner_text.to_f
+    latitude: row.at_css("latitude").inner_text.to_f,
+    category: row.at_css("category").inner_text.to_s,
+    region: row.at_css("region").inner_text.to_s,
+    states: row.at_css("states").inner_text.to_s
     )
 end
