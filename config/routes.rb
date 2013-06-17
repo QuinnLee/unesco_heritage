@@ -2,7 +2,7 @@ BreakableToy::Application.routes.draw do
   devise_for :users
 
   resources :users , only: [:show] do
-    resources :plans, only: [:create, :show]
+    resources :plans, only: [:create, :show, :destroy]
   end
 
   resources :locations, only: [:index, :show] do

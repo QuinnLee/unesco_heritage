@@ -16,3 +16,5 @@ plan#show
   </tr>
 <% end %>
 </table>
+
+<%= button_to 'Delete', [current_user,@plan], method: :delete, data: { confirm: 'Are you sure?' } %>
