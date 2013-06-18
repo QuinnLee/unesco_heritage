@@ -7,7 +7,7 @@ class PlansController < ApplicationController
 
   def show
    @plan = Plan.find(params[:id])
-   @plan_entries = @plan.locations
+   @plan_entries = @plan.plan_entries
   end
 
   def destroy
@@ -15,6 +15,5 @@ class PlansController < ApplicationController
     flash[:notice] = "#{@plan.name} is removed"
     @plan.destroy
     redirect_to user_path(current_user)
-
   end
 end
