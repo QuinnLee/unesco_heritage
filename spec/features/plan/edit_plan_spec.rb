@@ -8,7 +8,7 @@ feature "A user can edit a plan" do
   
   let(:plan_name){"hello"}
 
-  scenario "user wants to edit plan" do
+  pending "user wants to edit plan" do
     login_and_create_plan
     fill_in "Name", with: "Not Hello"
     click_button "Change name"

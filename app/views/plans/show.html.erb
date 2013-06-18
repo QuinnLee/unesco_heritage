@@ -1,7 +1,9 @@
 plan#show
 <p class="notice"><%= notice %></p>
 <%= link_to "Return User Page", user_path(current_user) %>
+<%= link_to "View Locations", locations_path %>
 <br>
+
 <h2><%= @plan.name %></h2>
 
 <%= pluralize(@plan_entries.size,'Destination') %>
@@ -10,11 +12,19 @@ plan#show
   <tr>
     <th>Name</th>
   </tr>
-<% @plan_entries.each do |plan_entry| %>
-  <tr>
-    <td><%= link_to "#{plan_entry.name}", plan_entry %></td>
-  </tr>
-<% end %>
+  
+  <% @plan_entries.each do |plan_entry| %>
+    <tr>
+      <td>
+        <%= link_to "#{plan_entry.location.name}", plan_entry.location %>
+
+        <% form_for (plan_entry), url: edit_location_plan_entry_path(plan_entry) do |f| %>
+          
+        <%= f.submit %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 
-<%= button_to 'Delete', [current_user,@plan], method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= button_to 'Delete Plan', [current_user,@plan], method: :delete, data: { confirm: 'Are you sure?' } %>
