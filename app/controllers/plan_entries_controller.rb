@@ -4,7 +4,11 @@ class PlanEntriesController < ApplicationController
     @location = Location.find(params[:location_id])
     create_plan_entry
     flash[:notice] = "You have added #{@location.name} was added to #{@plan.name}"
-    redirect_to user_path(current_user)
+    redirect_to user_plan_path(current_user,@plan)
+  end
+
+  def edit
+    
   end
   
   protected

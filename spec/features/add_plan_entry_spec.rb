@@ -14,11 +14,17 @@ feature "add a plan entry to a plan" do
   scenario "#plan entries will be displayed in the plan#show" do
     login_and_create_plan
     add_plan_entry
-    click_link (plan_name)
     click_link (valid_location.name)
     expect(page).to have_content("This location is in 1 plan")
     expect(page).to have_content(plan_name)
+  end
 
+  scenario "user can add desire date a plan entry" do
+    login_and_create_plan
+    add_plan_entry
+    fill_in "Date", with: "12/12/88"
+    click_button "Set Date"
+    expect(page).to have_content('12/12/88')
   end
 
   def login_and_create_plan
@@ -28,10 +34,10 @@ feature "add a plan entry to a plan" do
   end
 
   def add_plan_entry
-    click_link "Return User Page"
     click_link "View Locations"
     click_link  valid_location.name
     select("#{plan_name}", :from => "plan[id]")
     click_button "Add to Plan"
   end
+
 end

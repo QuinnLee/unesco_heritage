@@ -15,7 +15,7 @@ feature " a user deleting a plan" do
     add_plan_entry
     plan_entry_count = PlanEntry.count
     click_link plan_name
-    click_button "Delete"
+    click_button "Delete Plan"
     expect(page).to have_content("#{plan_name} is removed")
     expect(PlanEntry.count).to eql(plan_entry_count-1)
 

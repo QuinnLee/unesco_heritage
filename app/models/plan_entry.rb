@@ -4,7 +4,7 @@ class PlanEntry < ActiveRecord::Base
   
   validates :location, presence: true
   validates :plan, presence: true
-
+  
   attr_accessible :location, :plan
 
   def plan_name
