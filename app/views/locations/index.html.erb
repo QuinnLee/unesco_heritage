@@ -11,12 +11,12 @@
   </div>
   <% Location.categories.each do |category| %>
       <%= check_box_tag('q[category_eq_any][]', category) %>
-      <%= category %>
+      <%= f.label category %>
   <% end %>
   <br>
     <% Location.regions.each do |region| %>
       <%= check_box_tag('q[region_eq_any][]', region) %>
-      <%= region %>
+      <%= f.label region %>
   <% end %>
   <div class="actions"><%= f.submit "Search" %></div>
 <% end %>

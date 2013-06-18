@@ -20,7 +20,7 @@ class LocationsController < ApplicationController
 
   def users_plan_entries
     @users_plan_entries = current_user.plan_entries.
-      where(location_id: @location) if current_user
+      where(location_id: @location).uniq_by(&:plan_id) if current_user
   end  
 
 end
