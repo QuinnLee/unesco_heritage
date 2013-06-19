@@ -7,7 +7,7 @@ BreakableToy::Application.routes.draw do
 
   resources :locations, only: [:index, :show] do
     resources :log_entries, only: [:create, :destroy]
-    resources :plan_entries, only: [:create, :edit]
+    resources :plan_entries, only: [:create, :destroy, :update]
   end
 
   root :to => "home#index"
