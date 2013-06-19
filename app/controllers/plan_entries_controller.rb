@@ -2,9 +2,14 @@ class PlanEntriesController < ApplicationController
   
   def create
     @location = Location.find(params[:location_id])
-    create_plan_entry
-    flash[:notice] = "You have added #{@location.name} was added to #{@plan.name}"
-    redirect_to user_plan_path(current_user,@plan)
+    @plan_entry = @location.plan_entries.build(params[:plan_entry])
+    if @plan_entry.save
+      flash[:notice] = "You have added #{@location.name} was added to #{@plan_entry.plan_name}"
+      redirect_to user_plan_path(current_user,@plan_entry.plan)
+    else
+      flash[:error] = "Blah"
+      redirect_to location_path(@location)
+    end
   end
 
   def update
@@ -25,16 +30,5 @@ class PlanEntriesController < ApplicationController
     flash[:notice] = "#{@plan_entry.location_name} deleted from the plan"
     redirect_to user_plan_path(current_user,@plan)
   end
-  
-  protected
-    def create_plan_entry
-      @plan_entry = @location.plan_entries.build(params[:plan_entry])
-      set_plan
-      @plan_entry.save!
-    end
 
-    def set_plan
-      @plan = Plan.find(params[:plan][:id])
-      @plan_entry.plan = @plan
-    end
 end
