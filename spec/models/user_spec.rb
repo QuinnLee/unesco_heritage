@@ -11,7 +11,6 @@ describe User do
     expect(valid_user).to be_valid
   end
 
-h
 
   it { should validate_uniqueness_of(:email) }
 
