@@ -8,9 +8,7 @@ require "spec_helper"
 ## else back to home page
 
 feature "user sign up" do
-  let(:valid_user) do
-    FactoryGirl.build(:user)
-  end
+  let(:valid_user) {FactoryGirl.build(:user)}
 
   scenario "#creates a new account when all correct info is inputted" do
     visit(root_path)
@@ -29,14 +27,14 @@ feature "user sign up" do
 
   scenario "#redirects back to home page if user's password don't match" do
     visit(root_path)
+    current_user_count = User.count
     within("#sign_up") do
       fill_in "Email", with: valid_user.email
       fill_in "Password", with: valid_user.password
       fill_in "Password confirmation", with: " "
     end
     click_button "Sign up"
-    save_and_open_page
     expect(page).to have_content("Password doesn't match confirmation")
-    expect(User.count).to eql(0)
+    expect(User.count).to eql(current_user_count)
   end
 end

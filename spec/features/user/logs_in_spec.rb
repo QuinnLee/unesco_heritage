@@ -8,7 +8,7 @@ require "spec_helper"
 ## Else redirect to home#index
 
 feature "a user can log in the site" do
-  let (:valid_user) {FactoryGirl.create(:user)}
+  let(:valid_user) {FactoryGirl.create(:user)}
 
   let(:invalid_user){FactoryGirl.build(:user)}
   scenario "#redirects them to the home page" do

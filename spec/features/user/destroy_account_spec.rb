@@ -15,7 +15,8 @@ feature "a user can delete their account" do
     sign_in_as(valid_user)
     click_link("Edit profile")
     click_button("Cancel my account")
-    expect(page).to have_content("Bye! Your account was successfully canceled. 
+    expect(current_path).to eql root_path
+    expect(page).to have_content("Bye! Your account was successfully cancelled. 
       We hope to see you again soon.")
   end
 end
