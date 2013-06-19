@@ -3,11 +3,18 @@
 require "faker"
 FactoryGirl.define do
   factory :location do
-    name Faker::Lorem.characters 12 
+
+    sequence :name do 
+      Faker::Lorem.characters 12
+    end 
     longitude (100.1)
     latitude (100.11)
-    category "Cultural"
-    region "Africa"
+    sequence :category do 
+      Faker::Lorem.characters 3
+    end
+     sequence :region do 
+      Faker::Lorem.characters 5
+    end
     states "France"
   end
 end
