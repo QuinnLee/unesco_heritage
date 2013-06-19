@@ -29,12 +29,13 @@ feature "add a plan entry to a plan" do
 
   def login_and_create_plan
     sign_in_as(valid_user)
+    click_link "User Page"
     fill_in "Name", with: plan_name
     click_button "Create Plan"
   end
 
   def add_plan_entry
-    click_link "View Locations"
+    click_link "Locations"
     click_link  valid_location.name
     select("#{plan_name}", :from => "plan[id]")
     click_button "Add to Plan"
