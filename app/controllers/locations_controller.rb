@@ -2,8 +2,6 @@ class LocationsController < ApplicationController
   def index
     @search = Location.search(params[:q])
     @locations = @search.result
-    @categories = Location.categories
-    @regions = Location.regions
   end
 
   def show

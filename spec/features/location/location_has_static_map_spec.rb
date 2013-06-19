@@ -1,11 +1,9 @@
 require "spec_helper"
 
-## User Story
-## As a user, I want to see where a location is on a map
-
-## AC
-## display map of the location on its show page
-feature "location static map" do
+feature "location#show has a map", %q{
+  As a user
+  I want to see a map with the location on it
+} do
 
   let!(:location) do
     FactoryGirl.create(:location)

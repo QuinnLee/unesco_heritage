@@ -1,16 +1,24 @@
+<% if user_signed_in? %>
+  <%= link_to "Return User Page",user_path(current_user) %>
+<% end %>
+
+<% if flash[:notice] %>
+    <%=flash[:notice]%>
+<%end%>
+
 <%= search_form_for @search do |f| %>
   <div class="field">
     <%= f.label :name_cont, "Search" %>
     <%= f.text_field :name_or_states_cont, placeholder: "Search" %>
   </div>
-  <% @categories.each do |category| %>
-      <%= f.label category %>
+  <% Location.categories.each do |category| %>
       <%= check_box_tag('q[category_eq_any][]', category) %>
+      <%= f.label category %>
   <% end %>
   <br>
-    <% @regions.each do |region| %>
-      <%= f.label region %>
+    <% Location.regions.each do |region| %>
       <%= check_box_tag('q[region_eq_any][]', region) %>
+      <%= f.label region %>
   <% end %>
   <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
@@ -18,7 +26,7 @@
 <h1>Locations</h1>
     <table>
       <tr>
-        <th><h1><%= sort_link(@search, :name, "Name") %></h1></th>
+        <th><%= sort_link(@search, :name, "Name") %></th>
       </tr>
     <% @locations.each do |location| %>
       <tr>
