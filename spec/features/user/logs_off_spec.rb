@@ -1,12 +1,18 @@
 require "spec_helper"
 
-## A
-describe "a user logging off" do 
+## User Story
+## As a user, I want to log off
+
+## AC
+## Log off button
+## redirect to home#index
+
+feature "a user logging off" do 
   let (:valid_user) do
     FactoryGirl.create(:user)
   end
 
-  it "redirects user to the home page" do
+  scenario "redirects user to the home page" do
     visit(new_user_session_path)
     fill_in "Email", with: valid_user.email
     fill_in "Password", with: valid_user.password

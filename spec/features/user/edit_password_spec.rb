@@ -1,11 +1,15 @@
 require "spec_helper"
+## User Story
+## As a User, I want to edit my password
 
-describe "a user can edit their password" do
+## AC
+## let user edit password
+feature "a user can edit their password" do
   let (:valid_user) do
     FactoryGirl.create(:user)
   end
-  it "redirects them to the home page with a cheerful good-bye" do
-    visit(user_session_path)
+  scenario "redirects them to the home page with a cheerful good-bye" do
+    visit(root_path)
     sign_in_as(valid_user)
     click_link("Edit profile")
     fill_in "Password", with: "1qaz2wsx"
@@ -15,8 +19,8 @@ describe "a user can edit their password" do
     expect(page).to have_content("You updated your account successfully.")
   end
 
-  it "flashes an error if new passwords don't match " do
-    visit(user_session_path)
+  scenario "flashes an error if new passwords don't match " do
+    visit(root_path)
     sign_in_as(valid_user)
     click_link("Edit profile")
     fill_in "Password", with: "1qaz2wsx"
