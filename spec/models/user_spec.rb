@@ -11,9 +11,7 @@ describe User do
     expect(valid_user).to be_valid
   end
 
-  it { should validate_presence_of(:password) }
-
-  it { should validate_presence_of(:email) }
+h
 
   it { should validate_uniqueness_of(:email) }
 
