@@ -1,6 +1,6 @@
 module LogEntryHelper
   def add_a_log_entry(location)
-    click_link ("View Locations")
+    click_link ("Locations")
     click_link("#{location.name}")
     fill_in "First date", with: "12/12/88"
     fill_in "Last date", with: "12/12/88"
@@ -8,7 +8,7 @@ module LogEntryHelper
   end
 
   def add_a_log_entry_different_date(location)
-    click_link ("View Locations")
+    click_link ("Locations")
     click_link("#{location.name}")
     fill_in "First date", with: "12/12/99"
     fill_in "Last date", with: "12/12/99"
