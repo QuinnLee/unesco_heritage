@@ -16,8 +16,8 @@ describe "a user can navigate to and from the locations index" do
     random_location = Location.first
     visit(locations_path)
     click_link "#{random_location.name}"
-    click_link "Return to Locations"
-    click_link "Return User Page"
+    click_link "Locations"
+    click_link "User Page"
     expect(page).to have_content("user#show")
   end
 end

@@ -1,7 +1,3 @@
-<%= link_to "Return to Locations",locations_path %>
-<% if user_signed_in? %>
-  <%= link_to "Return to User Page", user_path(current_user) %>
-<% end %>
 <p>
   <b>Name:</b>
   <%= @location.name %>

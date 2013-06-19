@@ -1,11 +1,3 @@
-<% if user_signed_in? %>
-  <%= link_to "Return User Page",user_path(current_user) %>
-<% end %>
-
-<% if flash[:notice] %>
-    <%=flash[:notice]%>
-<%end%>
-
 <%= search_form_for @search do |f| %>
   <div class="field">
     <%= f.label :name_cont, "Search" %>
