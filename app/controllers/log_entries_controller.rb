@@ -5,6 +5,9 @@ class LogEntriesController < ApplicationController
     if create_log_entry  
       flash[:notice] = "You have added #{@location.name} to you log"
       redirect_to user_path(current_user)
+    else
+      flash[:error] = "This entry is invalid"
+      redirect_to location_path(@location)
     end
   end
 
@@ -37,10 +40,5 @@ class LogEntriesController < ApplicationController
   def set_user
     @log_entry.user = current_user
   end
-
-  def invalid_plan
-    flash[:error] = "This entry is invalid"
-    redirect_to location_path(@location)
-  end
-
+  
 end

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-feature "add a plan entry to a plan" do
+feature "delete a plan entry from a plan" do
   let!(:valid_user) {FactoryGirl.create(:user)}
   let!(:valid_location) {FactoryGirl.create(:location)}
   let(:plan_name){"hello"}
@@ -23,7 +23,7 @@ feature "add a plan entry to a plan" do
   def add_plan_entry
     click_link "Locations"
     click_link  valid_location.name
-    select("#{plan_name}", :from => "plan[id]")
+    select("#{plan_name}", :from => "plan_entry_plan_id")
     click_button "Add to Plan"
   end
 

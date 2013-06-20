@@ -30,7 +30,7 @@ feature " a user deleting a plan" do
     click_link "User Page"
     click_link "Locations"
     click_link  valid_location.name
-    select("#{plan_name}", :from => "plan[id]")
+    select("#{plan_name}", :from => "plan_entry_plan_id")
     click_button "Add to Plan"
   end
 end

@@ -18,6 +18,6 @@ describe "a user can navigate to and from the locations index" do
     click_link "#{random_location.name}"
     click_link "Locations"
     click_link "User Page"
-    expect(current_page).to eql(user_path(current_user))
+    expect(current_path).to eql(user_path(valid_user))
   end
 end
