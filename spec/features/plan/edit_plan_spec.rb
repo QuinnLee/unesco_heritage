@@ -15,9 +15,11 @@ feature "A user can edit a plan" do
     expect(page).to have_content ("Plan's name changed to Not Hello")
   end
 
+
   def login_and_create_plan
     sign_in_as(valid_user)
-    fill_in "Name", with: plan_name
+    click_link "User Page"
+    fill_in "plan_name", with: plan_name
     click_button "Create Plan"
   end
 end

@@ -8,4 +8,9 @@ class Plan < ActiveRecord::Base
   has_many :locations, :through => :plan_entries
   
   attr_accessible :description, :name, :user_id
+
+  def self.users_plan(user)
+   Plan.where(user_id: user)
+  end
+
 end

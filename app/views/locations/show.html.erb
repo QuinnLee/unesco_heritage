@@ -1,7 +1,3 @@
-<%= link_to "Return to Locations",locations_path %>
-<% if user_signed_in? %>
-  <%= link_to "Return to User Page", user_path(current_user) %>
-<% end %>
 <p>
   <b>Name:</b>
   <%= @location.name %>
@@ -43,9 +39,9 @@
 <% end %>
 
 <% if user_signed_in? && current_user.plans.count >0 %>
-  <%= form_for [@location, @plan_entry] do |f| %>
-    <%= collection_select(:plan, :id, current_user.plans, :id, :name, :prompt => true) %>
-    <%= f.submit "Add to Plan" %>
+  <%= simple_form_for [@location, @plan_entry] do |f| %>
+    <%= f.association :plan, include_blank: "Please Select" %>
+    <%= f.button :submit, "Add to Plan" %>
   <% end %>
 <% end %>
 

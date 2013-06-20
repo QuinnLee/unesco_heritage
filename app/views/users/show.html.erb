@@ -1,6 +1,5 @@
 user#show
-<p class="notice"><%= notice %></p>
-<%= link_to "View Locations", locations_path %>
+
 <%= pluralize(current_user.log_entries.size,'Destination') %>
 <%if current_user.log_entries.size > 0 %>
   <h1>Log</h1>
@@ -9,7 +8,7 @@ user#show
           <th>Name</th>
           <th>Date Visited</th>
         </tr>
-      <% current_user.log_entries.each do |log_entry| %>
+      <% @user.log_entries.each do |log_entry| %>
         <tr>
           <td><%= link_to "#{log_entry.location.name}", log_entry.location %></td>
           <td><%= log_entry.first_date %></td>
@@ -18,23 +17,22 @@ user#show
   </table>
 <% end %>
 
-<%= form_for Plan.new, url: user_plans_path(current_user) do |f| %>
-  <%= f.label :name %>
+<%= simple_form_for ([@user,@plan]) do |f| %>
+  <%= f.input :name %>
   <br>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+  <%= f.button :submit %>
 <% end %>
 <br>
 
-<h3><%= pluralize(current_user.plans.size, 'Plan') %></h3>
-<% if current_user.plans.size > 0 %>
+<h3><%= pluralize(@plans.size, 'Plan') %></h3>
+<% if @plans.size > 0 %>
   <table>
     <tr>
       <th>Plan Name</th>
     </tr>
-    <% current_user.plans.each do |plan| %>
+    <% @plans.each do |plan| %>
     <tr>
-      <td><%= link_to "#{plan.name}", user_plan_path(current_user, plan) %></td>
+      <td><%= link_to "#{plan.name}", user_plan_path(@user, plan) %></td>
       <br>
     </tr>
   </table>

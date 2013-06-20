@@ -1,6 +1,21 @@
 home#index
-<p class="notice"><%= notice %></p>
-<% unless user_signed_in? %>
-  <%= link_to "Locations", locations_path %>
+
+<h2>Sign in</h2>
+<%= simple_form_for(@user, :url => user_session_path) do |f| %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :remember_me, as: :check_boxes %>
+  <%= f.button :submit, value: "Sign in" %>
+  <%= link_to "Forgot your password?", new_password_path('user') %>
 <% end %>
-    
+
+<br>
+
+<h2>Sign up</h2>
+
+<%= simple_form_for(@user, url: user_registration_path, html: {id:'sign_up'}) do |f| %>
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.button :submit, value: "Sign up" %>
+<% end %>
