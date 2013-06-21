@@ -45,6 +45,7 @@ gem "nokogiri"
 gem "devise"
 gem 'ransack'
 gem "chronic"
+gem 'simple_form'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

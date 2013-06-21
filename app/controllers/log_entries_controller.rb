@@ -1,9 +1,14 @@
 class LogEntriesController < ApplicationController 
+  
   def create
-    @location = Location.find(params[:location_id])
-    create_log_entry
-    flash[:notice] = "You have added #{@location.name} to you log"
-    redirect_to user_path(current_user)
+    @location = Location.find(params[:location_id]) 
+    if create_log_entry  
+      flash[:notice] = "You have added #{@location.name} to you log"
+      redirect_to user_path(current_user)
+    else
+      flash[:error] = "This entry is invalid"
+      redirect_to location_path(@location)
+    end
   end
 
   def destroy
@@ -18,7 +23,11 @@ class LogEntriesController < ApplicationController
     @log_entry = @location.log_entries.build(params[:log_entry])  
     set_dates
     set_user
-    @log_entry.save!
+    check_if_valid
+  end
+
+  def check_if_valid
+    @log_entry.save! if @log_entry.valid?
   end
 
   def set_dates
@@ -31,5 +40,5 @@ class LogEntriesController < ApplicationController
   def set_user
     @log_entry.user = current_user
   end
-
+  
 end
