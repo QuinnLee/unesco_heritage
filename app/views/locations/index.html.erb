@@ -22,7 +22,9 @@
       </tr>
     <% @locations.each do |location| %>
       <tr>
-        <td><%= link_to "#{location.name}", location %></td>
+        <td><%= link_to smart_truncate(location.name, words: 4), location %></td>
       </tr>
     <% end %>
 </table>
+
+<%= paginate @locations %>
