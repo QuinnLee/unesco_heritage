@@ -1,4 +1,7 @@
 class Location < ActiveRecord::Base
+
+  acts_as_gmappable
+
   has_many :log_entries
   has_many :plan_entries
   
@@ -11,7 +14,7 @@ class Location < ActiveRecord::Base
 
   attr_accessible :name, :longitude, :latitude, :category, :region, :states
 
-  def static_image
+  def gmaps4rails_address
     "#{self.latitude},#{self.longitude}"
   end
 

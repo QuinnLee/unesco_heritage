@@ -2,6 +2,7 @@ class LocationsController < ApplicationController
   def index
     @search = Location.search(params[:q])
     @locations = @search.result.page params[:page]
+    @json = @locations.to_gmaps4rails
   end
 
   def show

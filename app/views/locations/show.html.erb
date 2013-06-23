@@ -48,4 +48,4 @@
   <% end %>
 <% end %>
 
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.static_image}&zoom=5&markers=#{@location.static_image}&size=600x600&sensor=true", alt: "#{@location.name}" %>
+<%= gmaps4rails(@json) %>
