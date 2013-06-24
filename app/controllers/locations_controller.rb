@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
   def index
     @search = Location.search(params[:q])
-    @locations = @search.result
+    @locations = @search.result.page params[:page]
   end
 
   def show

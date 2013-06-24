@@ -11,7 +11,7 @@ plan#show
   <% @plan_entries.each do |plan_entry| %>
     <tr>
       <td>
-        <%= link_to "#{plan_entry.location_name}", plan_entry.location %>
+        <%= link_to smart_truncate(plan_entry.location_name), plan_entry.location %>
         <%= plan_entry.date %>
         <%= simple_form_for ([plan_entry.location,plan_entry]) do |f| %>
           <%= f.input :date %>
