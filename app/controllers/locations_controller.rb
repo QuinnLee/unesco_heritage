@@ -7,6 +7,7 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
+    @json = @location.to_gmaps4rails
     @log_entry = @location.log_entries.build
     @plan_entry = @location.plan_entries.build
     users_plan_entries

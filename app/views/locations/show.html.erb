@@ -1,11 +1,13 @@
 <p>
   <b>Name:</b>
-  <%= @location.name %>
+  <a href="<%= @location.http_url.html_safe %>"><%= @location.name %></a>
 </p>
 
 <p>
   <b>Description</b>
+  <%= @location.description.html_safe %>
 </p>
+
 
 <% if user_signed_in? %>
   <%= form_for [@location, @log_entry] do |f| %>
