@@ -9,5 +9,8 @@ FactoryGirl.define do
     category "Cultural"
     region "Africa"
     states "France"
+    description Faker::Lorem.characters 12 
+    http_url "http://whc.unesco.org/en/list/1363"
+    image_url "http://whc.unesco.org/uploads/sites/site_1363.jpg"
   end
 end
