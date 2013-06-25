@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @plan = @user.plans.build
-    @plans = users_plans
+    @plans = users_plans.page params[:page]
   end
 
   private

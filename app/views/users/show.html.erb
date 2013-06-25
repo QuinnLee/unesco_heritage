@@ -10,7 +10,7 @@ user#show
         </tr>
       <% @user.log_entries.each do |log_entry| %>
         <tr>
-          <td><%= link_to "#{log_entry.location.name}", log_entry.location %></td>
+          <td><%= link_to smart_truncate(log_entry.location.name, words:4), log_entry.location %></td>
           <td><%= log_entry.first_date %></td>
         </tr>
       <% end %>

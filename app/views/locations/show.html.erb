@@ -27,6 +27,9 @@
     </tr>
     <% end %>
   <% end %>
+<% end %>
+
+<% if user_signed_in? %>
   <p>This location is in <%= pluralize(@users_plan_entries.size,'plan') %></p>
   <% unless @users_plan_entries == nil %>
     <% @users_plan_entries.each do |plan_entry| %>
