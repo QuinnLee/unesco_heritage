@@ -13,6 +13,8 @@ class LogEntry < ActiveRecord::Base
 
   attr_accessible :location, :user, :first_date, :last_date
 
+  # delegate :name => :location, :prefix => true
+
   def set_first_date(first_date)
     self[:first_date] = Chronic.parse(first_date).to_date
   end
