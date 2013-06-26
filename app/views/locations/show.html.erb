@@ -8,6 +8,13 @@
   <%= @location.description.html_safe %>
 </p>
 
+<h3>Nearby Locations</h3>
+<ul>
+<% @nearby_locations.each do |location| %>
+  <li><%= link_to location.name, location %> (<%= location.distance.to_f.round(2) %> miles)</li>
+<% end %>
+</ul>
+<%= paginate @nearby_locations %>
 
 <% if user_signed_in? %>
   <%= form_for [@location, @log_entry] do |f| %>
@@ -50,4 +57,17 @@
   <% end %>
 <% end %>
 
-<%= gmaps4rails(@json) %>
+<%if current_user %>
+  <%= gmaps(
+     map_options: {auto_zoom: true, zoom: 6},
+     markers: { data: @json, options: {rich_marker: true  }},
+     polylines: { data: @polylines }
+     )
+  %>
+<% else %>
+  <%= gmaps(
+     map_options: {auto_zoom: true, zoom: 6},
+     markers: { data: @json, options: {rich_marker: true }}
+     )
+  %>
+<% end %>

@@ -29,4 +29,17 @@
 
 <%= paginate @locations %>
 
-<%= gmaps4rails(@json) %>
+<%if current_user %>
+  <%= gmaps(
+     map_options: {auto_zoom: false, zoom: 2, do_clustering: true },
+     markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
+     polylines: { data: @polylines }
+     )
+  %>
+<% else %>
+  <%= gmaps(
+     map_options: {auto_zoom: false, zoom: 2, do_clustering: true },
+     markers: { data: @json, options: {rich_marker: true }}
+     )
+  %>
+<% end %>
