@@ -5,6 +5,7 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'thin'
 gem 'gmaps4rails'
+gem 'geocoder'
 
 
 group :assets do
