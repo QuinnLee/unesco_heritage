@@ -21,11 +21,11 @@ class PlanEntry < ActiveRecord::Base
    "picture" => "/images/summercamp.png",
    "width" => 60,
    "height" => 60,
-   "marker_anchor" => [10, 30],
-   "shadow_picture" => "/images/shadow-worldheritagesite.png" ,
+   "marker_anchor" => [10, 10],
+   "shadow_picture" => "/images/shadow-worldheritagesite.png",
    "shadow_width" => "110",
    "shadow_height" => "110",
-   "shadow_anchor" => [10, 30]
+   "shadow_anchor" => [10, 10]
   }
   end
 

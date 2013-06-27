@@ -44,7 +44,7 @@ class Location < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-      "<img src=\"#{self.image_url}\"> #{self.name}"
+      "<img src=\"#{self.image_url}\"> <br> #{self.name}"
   end
   
   def gmaps4rails_title

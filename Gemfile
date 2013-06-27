@@ -29,6 +29,7 @@ group :development do
 end
 
 group :test, :development do
+  gem "better_errors"
   gem "rspec-rails"
   gem "capybara"
   gem "launchy"

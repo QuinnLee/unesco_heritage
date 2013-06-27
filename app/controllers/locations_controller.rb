@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
     @search = Location.search(params[:q])
     @locations = @search.result.page params[:page]
     @json = markers
-    @polyline = polylines
+    @polyline = polylines if current_user
   end
 
   def show
@@ -14,8 +14,8 @@ class LocationsController < ApplicationController
     @users_plan_entries = users_plan_entries
     @users_log_entries = user_log_entries
 
-    @polyline = polylines
-    @json = markers
+    @polyline = polylines if current_user
+    @json = markers 
   end  
 
   private
