@@ -29,5 +29,27 @@ class Location < ActiveRecord::Base
   def self.regions
     Location.uniq.pluck(:region)
   end
+
+  def gmaps4rails_marker_picture
+  {
+   "picture" => "/images/worldheritagesite.png",
+   "width" => 60,
+   "height" => 60,
+   "marker_anchor" => [5, 10],
+   "shadow_picture" => "/images/shadow-worldheritagesite.png" ,
+   "shadow_width" => "110",
+   "shadow_height" => "110",
+   "shadow_anchor" => [5, 10]
+  }
+  end
+
+  def gmaps4rails_infowindow
+      "<img src=\"#{self.image_url}\"> #{self.name}"
+  end
   
+  def gmaps4rails_title
+    self.name
+  end
+
 end
+  

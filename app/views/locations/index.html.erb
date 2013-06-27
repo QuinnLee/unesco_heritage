@@ -33,7 +33,7 @@
   <%= gmaps(
      map_options: {auto_zoom: false, zoom: 2, do_clustering: true },
      markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
-     polylines: { data: @polylines }
+     polylines: { data: @polyline }
      )
   %>
 <% else %>

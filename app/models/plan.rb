@@ -7,6 +7,10 @@ class Plan < ActiveRecord::Base
   has_many :plan_entries, :dependent => :destroy
   has_many :locations, :through => :plan_entries
   
+  def marker
+    self.plan_entries.to_gmaps4rails
+  end
+
   attr_accessible :description, :name, :user_id
 
   def self.users_plan(user)
