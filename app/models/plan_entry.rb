@@ -13,7 +13,7 @@ class PlanEntry < ActiveRecord::Base
     :image_url, :http_url, to: :location
 
   def poly_line
-    Hash['lng', self.longitude , 'lat', self.latitude, "strokeColor", "#00000", "strokeWeight", 3]
+    Hash['lng', self.longitude , 'lat', self.latitude, "strokeColor", self.plan.color, "strokeWeight", 3]
   end
 
   def gmaps4rails_marker_picture
@@ -21,16 +21,16 @@ class PlanEntry < ActiveRecord::Base
    "picture" => "/images/summercamp.png",
    "width" => 60,
    "height" => 60,
-   "marker_anchor" => [5, 10],
+   "marker_anchor" => [10, 30],
    "shadow_picture" => "/images/shadow-worldheritagesite.png" ,
    "shadow_width" => "110",
    "shadow_height" => "110",
-   "shadow_anchor" => [5, 10]
+   "shadow_anchor" => [10, 30]
   }
   end
 
   def gmaps4rails_infowindow
-      "<img src=\"#{self.image_url}\"> #{self.name} <br> Date planed: #{date}"
+      "<img src=\"#{self.image_url}\">  <br> #{self.name} <br> Date planed: #{date} <br> Plan:#{self.plan_name}"
   end
   
   def gmaps4rails_title

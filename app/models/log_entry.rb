@@ -32,7 +32,7 @@ class LogEntry < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-      "<img src=\"#{self.image_url}\"> #{self.name} <br> Date visited: #{first_date} to #{last_date}"
+      "<img src=\"#{self.image_url}\"> #{self.name}, <br> Date visited: #{first_date} to #{last_date}"
   end
   
   def gmaps4rails_title

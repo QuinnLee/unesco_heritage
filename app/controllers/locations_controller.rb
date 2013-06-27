@@ -43,50 +43,33 @@ class LocationsController < ApplicationController
         markers <<JSON.parse(marker_set)
       end
     end
-
     markers.flatten!
     markers.to_json
   end
 
   def log_polyline
-    line = sorted_log_entries.map{|entry| entry.poly_line}.to_json
+    sorted_log_entries.map{|entry| entry.poly_line}.to_json
+  end
+
+  def plan_polyline
+    current_user.plans.map do |plan|
+      plan.plan_entries.map do |entry|
+        entry.poly_line
+      end
+    end
+  end
+
+  def clean_plan_polylines
+    plan_polyline.map{|set| set.to_json}.reject{|coordinates| coordinates == "[]"}
   end
 
   def polylines
-    line =''
-    line << log_polyline if current_user
-    
-  "[#{line}]"    
+    line=[log_polyline, clean_plan_polylines].flatten.join(",")
+   "[#{line}]"    
   end
 
   def plan_locations
     current_user.plans.map{|plan| plan.marker }.reject{|coordinates| coordinates == "[]"}
   end
 
-
-  #TODO REFACTOR
-
-
-  # ## Get each plans
-  # # def set_plan_locations
-  # #   current_user.plans.map{|plan| plan.locations}
-  # # end
-
-
-  # ## Mapping out user travel log
-  # def set_visited_path
-  #   "[#{user_travel_path.to_gmaps4rails}]"
-  # end
-
-  # def user_visited_location?(location)
-  #   current_user.locations.include? location
-  # end
-
-  # def users_and_page_locations(locations)
-  #    Array(locations)+ current_user.locations
-  # end
-
-  # def user_travel_path
-  #   current_user.locations.order('log_entries.first_date DESC')
-  # end
 end
