@@ -13,9 +13,9 @@ class LocationsController < ApplicationController
     @plan_entry = @location.plan_entries.build
     @users_plan_entries = users_plan_entries
     @users_log_entries = user_log_entries
-
+    
+    @json = markers
     @polyline = polylines if current_user
-    @json = markers 
   end  
 
   private
@@ -36,13 +36,14 @@ class LocationsController < ApplicationController
     markers = []
     markers << JSON.parse(@locations.to_gmaps4rails) unless @locations.nil?
     markers << JSON.parse(@location.to_gmaps4rails) unless @location.nil?
-    markers << JSON.parse(current_user.log_entries.to_gmaps4rails) if current_user
-
+    
     if current_user
       plan_locations.each do|marker_set|
         markers <<JSON.parse(marker_set)
       end
+      markers << JSON.parse(current_user.log_entries.to_gmaps4rails)
     end
+
     markers.flatten!
     markers.to_json
   end
