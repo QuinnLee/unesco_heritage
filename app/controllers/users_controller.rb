@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def sorted_log_entries
-    current_user.log_entries.sort_by {|entry| entry.first_date}
+    LogEntry.where(user_id: current_user).order(:first_date).reverse_order
   end
 
   def markers

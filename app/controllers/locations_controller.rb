@@ -29,14 +29,14 @@ class LocationsController < ApplicationController
   end
 
   def sorted_log_entries
-    current_user.log_entries.sort_by {|entry| entry.first_date}
+    LogEntry.where(user_id: current_user).order(:first_date).reverse_order
   end
 
   def markers
     markers = []
     markers << JSON.parse(@locations.to_gmaps4rails) unless @locations.nil?
     markers << JSON.parse(@location.to_gmaps4rails) unless @location.nil?
-    
+
     if current_user
       plan_locations.each do|marker_set|
         markers <<JSON.parse(marker_set)
@@ -65,7 +65,7 @@ class LocationsController < ApplicationController
   end
 
   def polylines
-    line=[log_polyline, clean_plan_polylines].flatten.join(",")
+    line = [log_polyline, clean_plan_polylines].flatten.join(",")
    "[#{line}]"    
   end
 

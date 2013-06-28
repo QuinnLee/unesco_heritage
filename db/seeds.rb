@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require "nokogiri"
 require "open-uri"
-
+#TODO REFACTOR THIS
 url = "http://whc.unesco.org/en/list/xml/"
 data = Nokogiri::XML(open(url))
 data.encoding = 'UTF-8'
