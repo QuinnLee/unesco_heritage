@@ -1,5 +1,4 @@
-class LogEntriesController < ApplicationController 
-  
+class LogEntriesController < ApplicationController   
   def create
     @location = Location.find(params[:location_id]) 
     if create_log_entry  

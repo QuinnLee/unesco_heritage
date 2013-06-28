@@ -1,11 +1,20 @@
 <p>
   <b>Name:</b>
-  <%= @location.name %>
+  <a href="<%= @location.http_url.html_safe %>"><%= @location.name %></a>
 </p>
 
 <p>
   <b>Description</b>
+  <%= @location.description.html_safe %>
 </p>
+
+<h3>Nearby Locations</h3>
+<ul>
+<% @nearby_locations.each do |location| %>
+  <li><%= link_to location.name, location %> (<%= location.distance.to_f.round(2) %> km)</li>
+<% end %>
+</ul>
+<%= paginate @nearby_locations %>
 
 <% if user_signed_in? %>
   <%= form_for [@location, @log_entry] do |f| %>
@@ -48,4 +57,18 @@
   <% end %>
 <% end %>
 
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.static_image}&zoom=5&markers=#{@location.static_image}&size=600x600&sensor=true", alt: "#{@location.name}" %>
+
+<%if current_user %>
+  <%= gmaps(
+     map_options: {auto_zoom: false, zoom: 2},
+     markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
+     polylines: { data: @polyline }
+     )
+  %>
+<% else %>
+  <%= gmaps(
+     map_options: {auto_zoom: false, zoom: 2},
+     markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }'}}
+     )
+  %>
+<% end %>
