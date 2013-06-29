@@ -19,9 +19,9 @@ class PlanEntry < ActiveRecord::Base
   def gmaps4rails_marker_picture
   {
    "picture" => "/images/summercamp.png",
-   "width" => 60,
-   "height" => 60,
-   "marker_anchor" => [10, 10],
+   "width" => 30,
+   "height" => 30,
+   "marker_anchor" => [5, 10],
    "shadow_picture" => "/images/shadow-worldheritagesite.png",
    "shadow_width" => "110",
    "shadow_height" => "110",

@@ -27,7 +27,7 @@ class LogEntry < ActiveRecord::Base
    "picture" => self.image_url,
    "width" => 60,
    "height" => 60,
-   "marker_anchor" => [ 5, 10]
+   "marker_anchor" => [30, 30]
   }
   end
 

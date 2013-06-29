@@ -52,7 +52,7 @@
 
 <% if user_signed_in? && current_user.plans.count >0 %>
   <%= simple_form_for [@location, @plan_entry] do |f| %>
-    <%= f.association :plan, include_blank: "Please Select" %>
+    <%= f.association :plan, collection: current_user.plans,include_blank: "Please Select" %>
     <%= f.button :submit, "Add to Plan" %>
   <% end %>
 <% end %>
