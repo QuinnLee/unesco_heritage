@@ -8,12 +8,12 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
-    @nearby_locations = @location.nearbys(500, :units => :km).page params[:page]
+    @nearby_locations = @location.nearbys(300, :units => :km).page(params[:page]).per(10)
     @log_entry = @location.log_entries.build
     @plan_entry = @location.plan_entries.build
     @users_plan_entries = users_plan_entries
     @users_log_entries = user_log_entries
-    
+
     @json = markers
     @polyline = polylines if current_user
   end  

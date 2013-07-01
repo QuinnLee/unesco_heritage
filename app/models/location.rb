@@ -3,7 +3,7 @@ class Location < ActiveRecord::Base
   acts_as_gmappable :process_geocoding => false
 
   reverse_geocoded_by :latitude, :longitude
-  after_validation :reverse_geocode
+  after_validation :reverse_geocode, :if => lambda{ |obj| obj.address_changed? }
   
   has_many :log_entries
   has_many :plan_entries
