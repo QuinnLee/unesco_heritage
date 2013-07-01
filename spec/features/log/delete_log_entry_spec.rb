@@ -8,8 +8,8 @@ feature "remove a log" do
     sign_in_as(valid_user)
     add_a_log_entry(location)
     click_link("#{location.name}")
-    click_button 'Remove from Log'
-    expect(page).to have_content("0 Destinations")
+    click_button 'Remove'
+    expect(page).to have_content("You have been to no destinations")
     expect(current_path).to eql user_path(valid_user)
   end
 end

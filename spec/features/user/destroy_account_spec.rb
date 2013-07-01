@@ -6,17 +6,18 @@ require "spec_helper"
 ## AC
 ## let user delete their accounts
 
+## TODO FIX
 feature "a user can delete their account" do
   let (:valid_user) do
     FactoryGirl.create(:user)
   end
+  
   scenario "redirects them to the home page with a cheerful good-bye" do
     visit(user_session_path)
     sign_in_as(valid_user)
-    click_link("Edit profile")
+    visit(edit_user_registration_path)
     click_button("Cancel my account")
     expect(current_path).to eql root_path
-    expect(page).to have_content("Bye! Your account was successfully cancelled. 
-      We hope to see you again soon.")
+    expect(User.count).to eql 0
   end
 end

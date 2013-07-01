@@ -37,7 +37,7 @@ feature "add a plan entry to a plan" do
   end
 
   def add_plan_entry
-    click_link "Locations"
+    click_link "Explorer"
     click_link  valid_location.name
     select("#{plan_name}", :from => "plan_entry_plan_id")
     click_button "Add to Plan"

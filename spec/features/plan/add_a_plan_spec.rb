@@ -25,7 +25,7 @@ feature "adding a plan" do
   scenario "#user can navigate back to user#show" do
     login_and_create_plan
     click_link "User Page"
-    expect(page).to have_content("user#show")
+    expect(current_path).to eql(user_path(valid_user))
     expect(page).to have_content(Plan.last.name)
   end
 
