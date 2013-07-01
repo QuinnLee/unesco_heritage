@@ -1,50 +1,59 @@
-user#show
+<div class="container">
+  <div id="travel-journal" class="row">
+    <div class="span5">
+      <h1>Travel Journal</h1>
+      <% if current_user.log_entries.size > 0 %>
+        <h3>You have traveled to <%= pluralize(current_user.log_entries.size,'Destination') %></h3>
+        <table>
+          <tr>
+            <th><h3>Name</h3></th>
+            <th><h3>Date Visited</h3></th>
+          </tr>
+          <% @user.log_entries.each do |log_entry| %>
+          <tr>
+            <td><p><%= link_to smart_truncate(log_entry.location.name, words:4), log_entry.location %></p></td>
+            <td><p><%= log_entry.first_date %></p></td>
+          </tr>
+          <% end %>
+        </table>
+        <% else %>
+        <p>You have been to no destinations</p>
+      <% end %>    
+    </div>
+    
+    <div class="span7">
+      <%= gmaps(
+         map_options: {auto_zoom: false, zoom: 2, do_clustering: true },
+         markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
+         polylines: { data: @polyline }
+         )
+      %>    
+    </div>
+  </div>
+</div>
+<div class="container">
 
-<%= pluralize(current_user.log_entries.size,'Destination') %>
-<%if current_user.log_entries.size > 0 %>
-  <h1>Log</h1>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Date Visited</th>
-        </tr>
-      <% @user.log_entries.each do |log_entry| %>
-        <tr>
-          <td><%= link_to smart_truncate(log_entry.location.name, words:4), log_entry.location %></td>
-          <td><%= log_entry.first_date %></td>
-        </tr>
+</div>
+      <%= simple_form_for ([@user,@plan]) do |f| %>
+        <%= f.input :name %>
+        <br>
+        <%= f.button :submit %>
       <% end %>
-  </table>
-<% end %>
-
-<%= simple_form_for ([@user,@plan]) do |f| %>
-  <%= f.input :name %>
-  <br>
-  <%= f.button :submit %>
-<% end %>
-<br>
-
-<h3><%= pluralize(@plans.size, 'Plan') %></h3>
-
-
-<% if @plans.size > 0 %>
-  <table>
-    <tr>
-      <th>Plan Name</th>
-    </tr>
-    <% @plans.each do |plan| %>
-    <tr>
-      <td><%= link_to "#{plan.name}", user_plan_path(@user, plan) %></td>
       <br>
-    </tr>
-  </table>
-  <% end %>
-<% end %>
+
+      <h3><%= pluralize(@plans.size, 'Plan') %></h3>
 
 
-  <%= gmaps(
-     map_options: {auto_zoom: false, zoom: 2, do_clustering: true },
-     markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
-     polylines: { data: @polyline }
-     )
-  %>
+      <% if @plans.size > 0 %>
+        <table>
+          <tr>
+            <th>Plan Name</th>
+          </tr>
+          <% @plans.each do |plan| %>
+          <tr>
+            <td><%= link_to "#{plan.name}", user_plan_path(@user, plan) %></td>
+            <br>
+          </tr>
+        </table>
+        <% end %>
+      <% end %>  
