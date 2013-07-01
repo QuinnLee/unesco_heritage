@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require_tree .
+
+$(document).ready(function(){
+  $("#log_entry_first_date").pickadate();
+});
