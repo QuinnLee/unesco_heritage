@@ -15,7 +15,7 @@
         <%= button_to 'Delete Entry', [plan_entry.location,plan_entry], method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
 
-    <%= button_to 'Delete Plan', [current_user,@plan], method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= button_to 'Delete Plan', @plan, method: :delete, data: { confirm: 'Are you sure?' } %>
 
   </div>
 </div>

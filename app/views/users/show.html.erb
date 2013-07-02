@@ -34,7 +34,7 @@
 <div class="container">
 
 </div>
-      <%= simple_form_for ([@user,@plan]) do |f| %>
+      <%= simple_form_for (@plan) do |f| %>
         <%= f.input :name %>
         <br>
         <%= f.button :submit %>
@@ -51,7 +51,7 @@
           </tr>
           <% @plans.each do |plan| %>
           <tr>
-            <td><%= link_to "#{plan.name}", user_plan_path(@user, plan) %></td>
+            <td><%= link_to "#{plan.name}", plan_path(plan) %></td>
             <br>
           </tr>
         </table>

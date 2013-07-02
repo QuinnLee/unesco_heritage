@@ -30,7 +30,7 @@
     <h3>This location is in <%= pluralize(@users_plan_entries.size,'plan') %></h3>
       <% unless @users_plan_entries == nil %>
         <% @users_plan_entries.each do |plan_entry| %>
-          <h3><%= link_to "#{plan_entry.plan_name}", user_plan_path(current_user,plan_entry.plan) %></h3>
+          <h3><%= link_to "#{plan_entry.plan_name}", plan_path(plan_entry.plan) %></h3>
         <% end %>
       <% end %>
     <div class="info">
