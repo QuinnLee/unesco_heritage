@@ -32,28 +32,18 @@
   </div>
 </div>
 <div class="container">
+  <h1>Plan Log</h1>
+  <%= simple_form_for (@plan) do |f| %>
+    <%= f.input :name %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+  <% end %>
 
+  <h3><%= pluralize(@plans.size, 'Plan') %></h3>
+
+  <% if @plans.size > 0 %>
+    
+    <% @plans.each do |plan| %>
+     <%= link_to "#{plan.name}", plan_path(plan) %>
+    <% end %>
+  <% end %>  
 </div>
-      <%= simple_form_for (@plan) do |f| %>
-        <%= f.input :name %>
-        <br>
-        <%= f.button :submit %>
-      <% end %>
-      <br>
-
-      <h3><%= pluralize(@plans.size, 'Plan') %></h3>
-
-
-      <% if @plans.size > 0 %>
-        <table>
-          <tr>
-            <th>Plan Name</th>
-          </tr>
-          <% @plans.each do |plan| %>
-          <tr>
-            <td><%= link_to "#{plan.name}", plan_path(plan) %></td>
-            <br>
-          </tr>
-        </table>
-        <% end %>
-      <% end %>  

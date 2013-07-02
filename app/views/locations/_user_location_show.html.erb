@@ -1,13 +1,13 @@
-<% if user_signed_in? %>
+ <% if user_signed_in? %>
 <div class="row user-location">
   <div class="span4">
     <h2>Have you been here?</h2>
       <div class="info">
         <%= simple_form_for [@location, @log_entry] do |f| %>
           <%= f.label :first_date %>
-          <%= f.text_field :first_date %>
+          <%= f.text_field :first_date,  class: 'log_entry_date' %>
           <%= f.label :last_date %>
-          <%= f.text_field :last_date %>
+          <%= f.text_field :last_date,  class: 'log_entry_date' %>
           <br>
           <%= f.button :submit, value: "Add to Log" %>
         <% end %>  
@@ -15,7 +15,7 @@
         <% unless @users_log_entries == nil %>
           <% @users_log_entries.each do |log_entry| %>
             <%= link_to "Visited #{log_entry.first_date}", user_path(current_user) %>
-            <%= button_to 'Remove', [@location, log_entry], { class: 'btn',method: :delete, data: { confirm: 'Are you sure?' }} %>
+            <%= button_to 'Remove', [@location, log_entry], { class: 'btn', method: :delete, data: { confirm: 'Are you sure?' }} %>
           <% end %>
         <% end %>          
       </div>      
