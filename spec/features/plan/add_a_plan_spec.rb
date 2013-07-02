@@ -33,7 +33,8 @@ feature "adding a plan" do
     login_and_create_plan
     click_link "User Page"
     click_link(plan_name)
-    expect(page).to have_content("plan#show")
+    plan = valid_user.plans.first
+    expect(current_path).to eql(plan_path(plan))
   end
 
   def login_and_create_plan
