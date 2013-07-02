@@ -12,9 +12,34 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require pickadate/picker
+//= require pickadate/picker.date 
 //= require twitter/bootstrap
 //= require_tree .
 
 $(document).ready(function(){
-  $("#log_entry_first_date").pickadate();
+  $("#log_entry_first_date").pickadate({
+    selectYears: 30,
+  });
+
+  $("#log_entry_last_date").pickadate({
+    selectYears: 30,
+  });
+
+  $("#plan_entry_date").pickadate({
+    selectYears: 30,
+  });
+
+  $("a.location").hover(function(){
+    var data = $(event.target).data();
+    var lat = data.lat;
+    var lng = data.long;
+    var latlng = new google.maps.LatLng(lat, lng);
+    // Gmaps.map.serviceObject.setZoom(1);
+    Gmaps.map.serviceObject.panTo(latlng);
+    Gmaps.map.serviceObject.setZoom(8);
+  });
+
+
 });
+
