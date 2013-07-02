@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
   def show
     @user = current_user
+    @user_log = sorted_log_entries
     @plan = @user.plans.build
     @plans = users_plans.page params[:page]
 
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def sorted_log_entries
-    LogEntry.where(user_id: current_user).order(:first_date).reverse_order
+    LogEntry.where(user_id: @user).order(:first_date).reverse_order
   end
 
   def markers

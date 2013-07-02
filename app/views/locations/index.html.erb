@@ -38,7 +38,7 @@
       <% @locations.each do |location| %>
       <tbody>
         <tr>
-          <td><%= link_to smart_truncate(location.name, words: 4), location %></td>
+          <td><%= link_to smart_truncate(location.name, words: 4), location, class: "location", data: { lat: location.latitude, long: location.longitude } %></td>
         </tr>      
       </tbody>
       <% end %>

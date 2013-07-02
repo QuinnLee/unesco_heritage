@@ -10,13 +10,14 @@ gem 'geocoder'
 
 
 group :assets do
-  gem 'therubyracer'
+  gem 'therubyracer', :platforms => :ruby
   gem "less-rails"
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'active_link_to'
+  gem 'underscore-rails'
 end
 
 gem 'jquery-rails'
@@ -47,4 +48,5 @@ gem 'ransack'
 gem "chronic"
 gem 'simple_form'
 gem 'kaminari'
+gem 'pickadate-rails'
 
