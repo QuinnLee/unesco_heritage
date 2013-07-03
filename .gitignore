@@ -13,3 +13,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+spec/cassettes/Seeder_Locations/seeds_the_location_table.yml

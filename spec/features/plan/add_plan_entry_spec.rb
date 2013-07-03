@@ -23,11 +23,10 @@ feature "add a plan entry to a plan" do
     login_and_create_plan
     add_plan_entry
     date = "2010-06-13"
-    fill_in "Date", with: date
+    fill_in "plan_entry_date", with: date
     click_button "Set Date"
     plan=PlanEntry.first
     expect(plan.date.to_s).to eql(date)
-    expect(page).to have_content(date)
   end
 
   def login_and_create_plan

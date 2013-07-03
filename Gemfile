@@ -25,6 +25,8 @@ group :test do
   gem "shoulda"
   gem "faker"
   gem "valid_attribute"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development do
