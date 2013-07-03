@@ -2,6 +2,8 @@ class LocationsController < ApplicationController
   def index
     @search = Location.search(params[:q])
     @locations = @search.result.page params[:page]
+    @categories = Location.categories
+    @regions = Location.regions
     @json = markers
     @polyline = polylines if current_user
   end
@@ -9,6 +11,8 @@ class LocationsController < ApplicationController
   def show
     @location = Location.find(params[:id])
     @nearby_locations = @location.nearbys(300, :units => :km).page(params[:page]).per(10)
+
+
     @log_entry = @location.log_entries.build
     @plan_entry = @location.plan_entries.build
     @users_plan_entries = users_plan_entries
@@ -19,6 +23,7 @@ class LocationsController < ApplicationController
   end  
 
   private
+  ##FACADE
   def user_log_entries
     current_user.log_entries.where(location_id: @location) if current_user
   end

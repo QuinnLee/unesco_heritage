@@ -5,18 +5,21 @@
       <%= f.text_field :name_or_states_cont, placeholder: "Search" %>
     </div>
     <ul>
-      <% Location.categories.each do |category| %>
+      <% @categories.each do |category| %>
         <li>
-          <%= check_box_tag('q[category_eq_any][]', category) %>
+          <%= check_box_tag('q[category_eq_any][]', category,
+            params[:q].try(:[],'q[category_eq_any][]').try(:include?, category) ) %>
           <%= f.label category %>
         </li>        
       <% end %>
     </ul>
     <ul>
-      <% Location.regions.each do |region| %>
+      <% @regions.each do |region| %>
         <li>
-          <%= check_box_tag('q[region_eq_any][]', region) %>
+          <%= check_box_tag('q[region_eq_any][]', region,
+            params[:q].try(:[],'region_eq_any').try(:include?, region) ) %>
           <%= f.label region %>
+
         </li>
       <% end %>
     </ul>

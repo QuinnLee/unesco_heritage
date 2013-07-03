@@ -9,14 +9,14 @@
             <th><h3>Name</h3></th>
             <th><h3>Date Visited</h3></th>
           </tr>
-          <% @user_log.each do |log_entry| %>
+        <% @user_log.each do |log_entry| %>
           <tr>
             <td><p><%= link_to smart_truncate(log_entry.location.name, words:4), log_entry.location %></p></td>
             <td><p><%= log_entry.first_date %></p></td>
           </tr>
-          <% end %>
+        <% end %>
         </table>
-        <% else %>
+      <% else %>
         <p>You have been to no destinations</p>
       <% end %>    
     </div>
@@ -31,6 +31,7 @@
     </div>
   </div>
 </div>
+
 <div class="container">
   <h1>Plan Log</h1>
   <%= simple_form_for (@plan) do |f| %>
@@ -43,7 +44,7 @@
   <% if @plans.size > 0 %>
     
     <% @plans.each do |plan| %>
-     <%= link_to "#{plan.name}", plan_path(plan) %>
+     <%= link_to plan.name, plan_path(plan) %>
     <% end %>
   <% end %>  
 </div>
