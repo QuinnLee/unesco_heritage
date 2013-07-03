@@ -12,4 +12,40 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require pickadate/picker
+//= require pickadate/picker.date 
+//= require twitter/bootstrap
 //= require_tree .
+
+$(function(){
+  $(".log_entry_date").pickadate({
+    selectYears: 30,
+  });
+
+  $(".plan_entry_date").pickadate({
+    selectYears: 30,
+  });
+
+  $("a.location").hover(function(){
+    var data = $(event.target).data();
+    var lat = data.lat;
+    var lng = data.long;
+    var latlng = new google.maps.LatLng(lat, lng);
+    // Gmaps.map.serviceObject.setZoom(1);
+    Gmaps.map.serviceObject.panTo(latlng);
+    Gmaps.map.serviceObject.setZoom(8);
+  });
+  
+  $("a.mark").hover(function(){
+    var data = $(event.target).data();
+    var lat = data.lat;
+    var lng = data.long;
+    var latlng = new google.maps.LatLng(lat, lng);
+    this.marker = new google.maps.Marker({
+      position: latlng,
+      map: Gmaps.map.serviceObject
+    });
+  }, function(){
+    this.marker.setVisible(false);
+  });
+});

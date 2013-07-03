@@ -37,7 +37,6 @@ class PlanEntry < ActiveRecord::Base
     self.name
   end
 
-
   def plan_name
     self.plan.name
   end

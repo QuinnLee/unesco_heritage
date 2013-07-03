@@ -8,25 +8,53 @@
 </head>
 <body>
 
-  <% if user_signed_in? %>
-    Logged in as <strong><%= current_user.email %></strong>
-    <%= link_to 'Edit profile', edit_user_registration_path %> |
-    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <br>
-    <%= link_to "User Page",user_path(current_user) %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> |
-    <%= link_to "Login", new_user_session_path %>
-    <br>
-  <% end %>
-    <%= link_to "Locations", locations_path %>
-  <br>
+<div class="navbar  navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container right-pull">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">World Explorer</a>
+      <div class="nav-collapse">
+        <ul class="nav pull-right">
+        <%= active_link_to 'Explorer', locations_path, :wrap_tag => :li %>
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              <%= current_user.email %>
+              <b class='caret'></b>
+            </a>
+            <ul class="dropdown-menu">
+              <%= active_link_to 'User Page', user_path(current_user), :wrap_tag => :li %>
+              <%= active_link_to "Edit", edit_user_registration_path, :wrap_tag => :li %>
+              <%= active_link_to 'Logout', destroy_user_session_path, method: :delete, :wrap_tag => :li %>
+            </ul>
+          </li>
+        <% else %>
+          <%= active_link_to 'Sign up', new_user_registration_path, :wrap_tag => :li %>
+          <li class="dropdown">
+          <%= active_link_to 'Sign In', new_user_session_path, :wrap_tag => :li %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 
   <% flash.each do |key, value| -%>
     <div id="flash_<%= key %>"><%=h value %></div>
   <% end -%>
+  <%= yield %>
+  <%= yield :scripts %>
 
-<%= yield %>
-<%= yield :scripts %>
+<div class="container">
+  <footer class="row">
+    <p>made by Quinn Lee</p>
+  </footer>
+  </div>
+  
 </body>
 </html>

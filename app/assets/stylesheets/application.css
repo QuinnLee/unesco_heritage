@@ -8,6 +8,14 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require pickadate/default
+ *= require pickadate/default.date
  *= require_self
  *= require_tree .
  */
+.gmaps4rails_map img {
+    max-width: none;
+}
+.gmaps4rails_map label {
+    width: auto; display:inline;
+}
