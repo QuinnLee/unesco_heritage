@@ -1,45 +1,70 @@
-<%= search_form_for @search do |f| %>
-  <div class="field">
-    <%= f.label :name_cont, "Search" %>
-    <%= f.text_field :name_or_states_cont, placeholder: "Search" %>
+<div id="search" class="container">
+  <div class="row">
+  <%= search_form_for @search, :builder => SimpleForm::FormBuilder do |f| %>
+    <div class="field">
+      <%= f.text_field :name_or_states_cont, placeholder: "Search" %>
+    </div>
+    <ul>
+      <% @categories.each do |category| %>
+        <li>
+          <%= check_box_tag('q[category_eq_any][]', category,
+            params[:q].try(:[],'q[category_eq_any][]').try(:include?, category) ) %>
+          <%= f.label category %>
+        </li>        
+      <% end %>
+    </ul>
+    <ul>
+      <% @regions.each do |region| %>
+        <li>
+          <%= check_box_tag('q[region_eq_any][]', region,
+            params[:q].try(:[],'region_eq_any').try(:include?, region) ) %>
+          <%= f.label region %>
+
+        </li>
+      <% end %>
+    </ul>
+    <%= f.button :submit, value: "Search" %>
+  <% end %>  
   </div>
-  <% Location.categories.each do |category| %>
-      <%= check_box_tag('q[category_eq_any][]', category) %>
-      <%= f.label category %>
-  <% end %>
-  <br>
-    <% Location.regions.each do |region| %>
-      <%= check_box_tag('q[region_eq_any][]', region) %>
-      <%= f.label region %>
-  <% end %>
-  <div class="actions"><%= f.submit "Search" %></div>
-<% end %>
 
-<h1>Locations</h1>
-    <table>
-      <tr>
-        <th><%= sort_link(@search, :name, "Name") %></th>
-      </tr>
-    <% @locations.each do |location| %>
-      <tr>
-        <td><%= link_to smart_truncate(location.name, words: 4), location %></td>
-      </tr>
+
+  <div class="row">
+   <div class="span3">
+    <h2><%= sort_link(@search, :name, "Destinations") %></h2>
+      <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>
+          </td>
+        </tr>
+      </thead>
+      <% @locations.each do |location| %>
+      <tbody>
+        <tr>
+          <td><%= link_to smart_truncate(location.name, words: 4), location, class: "location", data: { lat: location.latitude, long: location.longitude } %></td>
+        </tr>      
+      </tbody>
+      <% end %>
+      </table>
+   </div>
+   <div id="location-index" class="span9">
+    <%if current_user %>
+      <%= gmaps(
+         map_options: {auto_zoom: false, zoom: 2},
+         markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
+         polylines: { data: @polyline }
+         )
+      %>
+    <% else %>
+      <%= gmaps(
+         map_options: {auto_zoom: false, zoom: 2},
+         markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }'}}
+         )
+      %>
     <% end %>
-</table>
+    </div>
+  </div>
 
-<%= paginate @locations %>
 
-<%if current_user %>
-  <%= gmaps(
-     map_options: {auto_zoom: false, zoom: 2},
-     markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
-     polylines: { data: @polyline }
-     )
-  %>
-<% else %>
-  <%= gmaps(
-     map_options: {auto_zoom: false, zoom: 2},
-     markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }'}}
-     )
-  %>
-<% end %>
+  <%= paginate @locations %>  
+</div>

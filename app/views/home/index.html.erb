@@ -1,21 +1,50 @@
-home#index
+<div class="row launch-banner">
+  <div class="container">
+    <div id="sign_up" class="offset11 span3 form">
+      <h2>Sign up</h2>
+      <%= simple_form_for('user', url: user_registration_path, html: {id:'sign_up'}) do |f| %>
+        <%= f.input :email %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+        <%= f.button :submit, value: "Sign up" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<h2>Sign in</h2>
-<%= simple_form_for(@user, :url => user_session_path) do |f| %>
-  <%= f.input :email %>
-  <%= f.input :password %>
-  <%= f.input :remember_me, as: :check_boxes %>
-  <%= f.button :submit, value: "Sign in" %>
-  <%= link_to "Forgot your password?", new_password_path('user') %>
-<% end %>
+<hr class="featurette-divider">
 
-<br>
+<div class="container intro">
+  <div class="row">
+    <div class="span12">
+      <h2>Heading</h2>
+      <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+      <p><a class="btn" href="#">View details &raquo;</a></p>
+    </div>
+  </div>
 
-<h2>Sign up</h2>
+  <div class="featurette">
+    <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>
+    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+  </div>
+  <div class="row">
+   <% if @json.present? %>
+    <div class="span6">
+      <%= gmaps(
+         map_options: {auto_zoom: false, zoom: 5},
+         markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }'}}
+         )
+      %>
+    </div>
+    <div class="span6">
+      <h2><%= link_to @location.name.html_safe, @location %></h2>
+      <p class="lead"> Located: <%= @location.region %>, <%= @location.states %></p>
+      <%= truncate(@location.description, length: 900).html_safe %>
+    </div>
+  </div>
+  <% end %>
+</div>
 
-<%= simple_form_for(@user, url: user_registration_path, html: {id:'sign_up'}) do |f| %>
-  <%= f.input :email %>
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
-  <%= f.button :submit, value: "Sign up" %>
-<% end %>
+
+
+

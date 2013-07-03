@@ -4,6 +4,8 @@ require "spec_helper"
 
 ## AC
 ## let user edit password
+
+#TODO
 feature "a user can edit their password" do
   let (:valid_user) do
     FactoryGirl.create(:user)
@@ -11,7 +13,7 @@ feature "a user can edit their password" do
   scenario "redirects them to the home page with a cheerful good-bye" do
     visit(root_path)
     sign_in_as(valid_user)
-    click_link("Edit profile")
+    visit(edit_user_registration_path)
     fill_in "Password", with: "1qaz2wsx"
     fill_in "Password confirmation", with: "1qaz2wsx"
     fill_in "Current password", with: valid_user.password
@@ -22,7 +24,7 @@ feature "a user can edit their password" do
   scenario "flashes an error if new passwords don't match " do
     visit(root_path)
     sign_in_as(valid_user)
-    click_link("Edit profile")
+    visit(edit_user_registration_path)
     fill_in "Password", with: "1qaz2wsx"
     fill_in "Password confirmation", with: "1qaz2wsx111"
     fill_in "Current password", with: valid_user.password

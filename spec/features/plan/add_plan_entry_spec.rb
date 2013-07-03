@@ -22,11 +22,11 @@ feature "add a plan entry to a plan" do
   scenario "user can add desire date a plan entry" do
     login_and_create_plan
     add_plan_entry
-    select  "2010", from: "plan_entry_date_1i"
-    select  "June", from: "plan_entry_date_2i"
-    select  "13", from: "plan_entry_date_3i"
+    date = "2010-06-13"
+    fill_in "plan_entry_date", with: date
     click_button "Set Date"
-    expect(page).to have_content('2010-06-13')
+    plan=PlanEntry.first
+    expect(plan.date.to_s).to eql(date)
   end
 
   def login_and_create_plan
@@ -37,7 +37,7 @@ feature "add a plan entry to a plan" do
   end
 
   def add_plan_entry
-    click_link "Locations"
+    click_link "Explorer"
     click_link  valid_location.name
     select("#{plan_name}", :from => "plan_entry_plan_id")
     click_button "Add to Plan"

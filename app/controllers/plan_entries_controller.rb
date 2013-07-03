@@ -5,7 +5,7 @@ class PlanEntriesController < ApplicationController
     @plan_entry = @location.plan_entries.build(params[:plan_entry])
     if @plan_entry.save
       flash[:notice] = "You have added #{@location.name} was added to #{@plan_entry.plan_name}"
-      redirect_to user_plan_path(current_user,@plan_entry.plan)
+      redirect_to plan_path(@plan_entry.plan)
     else
       flash[:error] = "Blah"
       redirect_to location_path(@location)
@@ -28,7 +28,7 @@ class PlanEntriesController < ApplicationController
     @plan = @plan_entry.plan
     @plan_entry.destroy
     flash[:notice] = "#{@plan_entry.location_name} deleted from the plan"
-    redirect_to user_plan_path(current_user,@plan)
+    redirect_to plan_path(@plan)
   end
 
 end

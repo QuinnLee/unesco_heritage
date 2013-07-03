@@ -10,10 +10,11 @@ gem 'geocoder'
 
 
 group :assets do
-  gem 'therubyracer'
+  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'underscore-rails'
 end
 
 gem 'jquery-rails'
@@ -24,6 +25,8 @@ group :test do
   gem "shoulda"
   gem "faker"
   gem "valid_attribute"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development do
@@ -44,3 +47,6 @@ gem 'ransack'
 gem "chronic"
 gem 'simple_form'
 gem 'kaminari'
+gem 'active_link_to'
+gem 'pickadate-rails'
+

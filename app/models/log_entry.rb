@@ -18,6 +18,8 @@ class LogEntry < ActiveRecord::Base
   delegate :name, :longitude, :latitude, :category, :region, :states, :description,
     :image_url, :http_url, to: :location
 
+
+   ## get rid of selfs 
   def poly_line
     Hash['lng', self.longitude , 'lat', self.latitude, "strokeColor", "#00000", "strokeWeight", 3]
   end

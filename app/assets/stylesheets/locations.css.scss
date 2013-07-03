@@ -1,0 +1,43 @@
+#search{
+  li{
+  list-style-type: none;
+  display: inline;
+  padding:0px 10px 0px 0px;
+  }
+  label{
+    display: inline;
+    font-size: 15px;
+  }
+}
+
+#location-index{
+    padding-top: 75px;
+}
+
+
+#title{
+  text-align: center;
+  text-decoration: none;
+  :hover{
+    text-decoration:none;
+    color: black;
+  }
+}
+
+#location-show{
+  .gmaps4rails_map{
+    height: 300px;
+    width:967px;
+  }
+  .map_container{
+    width: 967px;
+  }
+}
+.user-location{
+  h2, h3{
+    text-align: center;
+  }
+  .info{
+    padding-left: 45px;
+  }
+}
