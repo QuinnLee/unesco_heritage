@@ -17,7 +17,7 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-$(document).ready(function(){
+$(function(){
   $(".log_entry_date").pickadate({
     selectYears: 30,
   });
@@ -35,18 +35,17 @@ $(document).ready(function(){
     Gmaps.map.serviceObject.panTo(latlng);
     Gmaps.map.serviceObject.setZoom(8);
   });
+  
   $("a.mark").hover(function(){
     var data = $(event.target).data();
     var lat = data.lat;
     var lng = data.long;
     var latlng = new google.maps.LatLng(lat, lng);
-    var marker = new google.maps.Marker({
+    this.marker = new google.maps.Marker({
       position: latlng,
       map: Gmaps.map.serviceObject
     });
+  }, function(){
+    this.marker.setVisible(false);
   });
-
-
-
 });
-
