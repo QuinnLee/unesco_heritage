@@ -29,12 +29,12 @@ class LogEntry < ActiveRecord::Base
    "picture" => self.image_url,
    "width" => 40,
    "height" => 40,
-   "marker_anchor" => [30, 30]
+   "marker_anchor" => [13, 35]
   }
   end
 
   def gmaps4rails_infowindow
-    "<div class='location-infobox'> <p>#{self.name}</p> <p>Date visited: #{first_date.to_s}</p> <p>Located: #{self.states}</p> </div>"
+    "<div class='location-infobox'> <a href=/locations/#{location.id}>#{name}</a> <p>Date visited: #{first_date.to_s}</p> <p>Located: #{states}</p> </div>"
   end
   
   def gmaps4rails_title
