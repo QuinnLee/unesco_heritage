@@ -1,18 +1,24 @@
 <div class="container">
   <div class="row">
     <h2><%= @plan.name %></h2>
-
     <h3>There is <%= pluralize(@plan_entries.size,'Destination') %></h3>
+    <table>
       <% @plan_entries.each do |plan_entry| %>
-        <%= link_to smart_truncate(plan_entry.location_name), plan_entry.location %>
+      <tbody>
+        <td>
+          <%= link_to smart_truncate(plan_entry.location_name), plan_entry.location %>
           <%= simple_form_for ([plan_entry.location,plan_entry]) do |f| %>
             <%= f.text_field :date, class: 'plan_entry_date'  %>
-            <%= f.button :submit, value: "Set Date" %>
-          <% end %>
-        <%= button_to 'Delete Entry', [plan_entry.location,plan_entry], method: :delete, class: 'btn', data: { confirm: 'Are you sure?' } %>
+            <%= f.button :submit, value: "Set Date", class: 'btn btn-mini' %>
+          <% end %>      
+        </td>
+        <td>
+          <%= button_to 'Delete Entry', [plan_entry.location,plan_entry], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %>
+        </td>
       <% end %>
-
-    <%= button_to 'Delete Plan', @plan, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' } %>
-
+      </tbody>
+    </table>
+    <br>
+    <%= button_to 'Delete Plan', @plan, class: 'btn btn-danger btn-large', method: :delete, data: { confirm: 'Are you sure?' } %>    
   </div>
 </div>

@@ -4,16 +4,16 @@
       <h1>Travel Journal</h1>
       <% if current_user.log_entries.size > 0 %>
         <h3>You have traveled to <%= pluralize(current_user.log_entries.size,'Destination') %></h3>
-        <table>
-          <tr>
+        <table id= "travel-log" class="table table-striped">
+          <thead>
             <th><h3>Name</h3></th>
-            <th><h3>Date Visited</h3></th>
-          </tr>
+            <th><h3>Visited</h3></th>
+          </thead>
         <% @user_log.each do |log_entry| %>
-          <tr>
-            <td><p><%= link_to smart_truncate(log_entry.location.name, words:4), log_entry.location %></p></td>
+          <tbody>
+            <td><%= link_to smart_truncate(log_entry.location.name, words:4), log_entry.location, class: "location", data: { lat: log_entry.location.latitude, long: log_entry.location.longitude } %></td>
             <td><p><%= log_entry.first_date %></p></td>
-          </tr>
+          </tbody>
         <% end %>
         </table>
       <% else %>
@@ -44,7 +44,7 @@
   <% if @plans.size > 0 %>
     
     <% @plans.each do |plan| %>
-     <%= link_to plan.name, plan_path(plan) %>
+     <h3><%= link_to plan.name, plan_path(plan) %></h3>
     <% end %>
   <% end %>  
 </div>
