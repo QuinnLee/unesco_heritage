@@ -46,11 +46,11 @@ class Location < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-      "<img src=\"#{self.image_url}\"> <br> #{self.name}"
+      "<div class='location-infobox'> <p>#{self.name}</p> <p>Type: #{self.category}</p> <p>Located: #{self.states}</p> <img src=\"#{self.image_url}\"> </div>"
   end
   
   def gmaps4rails_title
-    self.name
+    name
   end
 
 end

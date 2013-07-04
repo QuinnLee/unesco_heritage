@@ -30,7 +30,7 @@ class PlanEntry < ActiveRecord::Base
   end
 
   def gmaps4rails_infowindow
-      "<img src=\"#{self.image_url}\">  <br> #{self.name} <br> Date planed: #{date} <br> Plan:#{self.plan_name}"
+    "<div class='location-infobox'> <p>#{self.name}</p> <p>Plan:#{self.plan_name}</p> <p>Date planed: #{date}</p> <p>Located: #{self.states}</p> <img src=\"#{self.image_url}\"></div>"
   end
   
   def gmaps4rails_title
