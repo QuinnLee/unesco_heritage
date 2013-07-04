@@ -33,7 +33,7 @@ $(function(){
     var latlng = new google.maps.LatLng(lat, lng);
     // Gmaps.map.serviceObject.setZoom(1);
     Gmaps.map.serviceObject.panTo(latlng);
-    Gmaps.map.serviceObject.setZoom(8);
+    Gmaps.map.serviceObject.setZoom(7);
   });
   
   $("a.mark").hover(function(){
@@ -41,6 +41,8 @@ $(function(){
     var lat = data.lat;
     var lng = data.long;
     var latlng = new google.maps.LatLng(lat, lng);
+     Gmaps.map.serviceObject.panTo(latlng);
+    Gmaps.map.serviceObject.setZoom(6);
     this.marker = new google.maps.Marker({
       position: latlng,
       map: Gmaps.map.serviceObject
