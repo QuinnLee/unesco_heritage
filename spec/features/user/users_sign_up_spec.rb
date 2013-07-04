@@ -29,7 +29,7 @@ feature "user sign up" do
     fill_in "Password", with: valid_user.password
     fill_in "Password confirmation", with: " "
     click_button "Sign up"
-    expect(page).to have_content("Password doesn't match confirmation")
+    expect(page).to have_content("Please review the problems below")
     expect(User.count).to eql(current_user_count)
   end
 end
