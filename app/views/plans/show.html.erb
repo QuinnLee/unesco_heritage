@@ -9,12 +9,11 @@
           <td>
             <p><%= link_to smart_truncate(plan_entry.location_name), plan_entry.location,class: "location", data: { lat: plan_entry.location.latitude, long: plan_entry.location.longitude } %></p>
           </td>
-          <td>
             <%= simple_form_for ([plan_entry.location,plan_entry]) do |f| %>
-              <%= f.text_field :date, class: 'plan_entry_date'  %>
-              <%= f.button :submit, value: "Set Date", class: 'btn btn-mini update' %>
+              <td><%= f.text_field :date, class: 'plan_entry_date'  %></td>
+              <td><%= f.button :submit, value: "Set Date", class: 'btn btn-mini update' %></td>
             <% end %>             
-          </td>
+
           <td>
             <%= button_to 'Delete Entry', [plan_entry.location,plan_entry], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %>
           </td>
