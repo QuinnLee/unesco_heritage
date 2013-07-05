@@ -24,3 +24,10 @@ a.location:hover{
   text-decoration: none;
   color:black;
 }
+
+.navbar .nav > li > a.dropdown-toggle{
+    padding: 0px 10px 0px 10px;
+  img{
+    padding-right: 10px
+  }
+}
