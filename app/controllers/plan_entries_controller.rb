@@ -2,7 +2,9 @@ class PlanEntriesController < ApplicationController
   
   def create
     @location = Location.find(params[:location_id])
-    @plan_entry = @location.plan_entries.build(params[:plan_entry])
+    @plan_entry = @location.plan_entries.build()
+    set_plan
+
     if @plan_entry.save
       flash[:notice] = "You have added #{@location.name} was added to #{@plan_entry.plan_name}"
       redirect_to plan_path(@plan_entry.plan)
@@ -29,6 +31,14 @@ class PlanEntriesController < ApplicationController
     @plan_entry.destroy
     flash[:notice] = "#{@plan_entry.location_name} deleted from the plan"
     redirect_to plan_path(@plan)
+  end
+
+  private
+
+  def set_plan
+    plan_id = params[:plan_entry][:plan_id]
+    @plan_entry.plan = Plan.find(plan_id) unless plan_id.empty?
+     
   end
 
 end

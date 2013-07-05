@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :log_entries
+  has_many :log_entries, :dependent => :destroy
   has_many :locations, :through => :log_entries
 
-  has_many :plans
+  has_many :plans, :dependent => :destroy
   has_many :plan_entries, :through => :plans
 
   # Setup accessible (or protected) attributes for your model
