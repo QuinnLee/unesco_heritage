@@ -1,17 +1,17 @@
 class Cartographer
 
   def initialize(options = {})
-    @user = options[:user]
+    @user = options[:user] 
     @location = options[:location]
     @plan = options[:plan]
   end
 
   def user_log_entries
-    @user.log_entries.where(location_id: @location) if @user
+    @user.log_entries.where(location_id: @location) 
   end
 
   def users_plan_entries
-    @user.plan_entries.where(location_id: @location).uniq_by(&:plan_id) if @user
+    @user.plan_entries.where(location_id: @location).uniq_by(&:plan_id) 
   end
 
   def markers

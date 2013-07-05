@@ -1,5 +1,5 @@
 require 'spec_helper'
-##FINISH THIS
+
 describe Seeder::Locations, :vcr do
   let(:url){"http://whc.unesco.org/en/list/xml/"}
   let(:seeder){Seeder::Locations}

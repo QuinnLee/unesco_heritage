@@ -25,7 +25,7 @@ module Seeder
     end
 
 
-##Help write a test for this
+
     def self.get_description(row)
       description = row.at_css("long_description").inner_text
       if description.empty?
