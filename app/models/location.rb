@@ -37,20 +37,20 @@ class Location < ActiveRecord::Base
    "picture" => "/images/worldheritagesite.png",
    "width" => 60,
    "height" => 60,
-   "marker_anchor" => [5, 10],
+   "marker_anchor" => [13, 35],
    "shadow_picture" => "/images/shadow-worldheritagesite.png" ,
    "shadow_width" => "110",
    "shadow_height" => "110",
-   "shadow_anchor" => [5, 10]
+   "shadow_anchor" => [13, 35]
   }
   end
 
   def gmaps4rails_infowindow
-      "<img src=\"#{self.image_url}\"> <br> #{self.name}"
+      "<div class='location-infobox'> <a href=/locations/#{id}>#{name}</a> <p>Type: #{category}</p> <p>Located: #{states}</p> <img src=\"#{image_url}\"> </div>"
   end
   
   def gmaps4rails_title
-    self.name
+    name
   end
 
 end

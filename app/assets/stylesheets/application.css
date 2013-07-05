@@ -19,3 +19,8 @@
 .gmaps4rails_map label {
     width: auto; display:inline;
 }
+
+a.location:hover{
+  text-decoration: none;
+  color:black;
+}

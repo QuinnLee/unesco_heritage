@@ -20,17 +20,18 @@ class PlanEntry < ActiveRecord::Base
   {
    "picture" => "/images/summercamp.png",
    "width" => 30,
-   "height" => 30,
-   "marker_anchor" => [5, 10],
+   "height" => 40,
+   "marker_anchor" => [13, 35],
    "shadow_picture" => "/images/shadow-worldheritagesite.png",
    "shadow_width" => "110",
    "shadow_height" => "110",
-   "shadow_anchor" => [10, 10]
+   "shadow_anchor" => [13, 35]
   }
   end
 
   def gmaps4rails_infowindow
-      "<img src=\"#{self.image_url}\">  <br> #{self.name} <br> Date planed: #{date} <br> Plan:#{self.plan_name}"
+    "<div class='location-infobox'> <a href=/locations/#{location.id}>#{name}</a>  <p>Plan: <a href=/plans/#{plan.id}>#{plan_name}</a> <p>
+      <p>Date planed: #{date}</p> <p>Located: #{states}</p> <img src=\"#{image_url}\"></div>"
   end
   
   def gmaps4rails_title
