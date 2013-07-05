@@ -8,8 +8,8 @@ module Seeder
       data = Nokogiri::XML(open(url))
       data.encoding = 'UTF-8'
       rows = data.css("row")
-
       rows.each do |row|
+
         Location.create(
           name: row.at_css("site").inner_text.gsub(/<\/?[^>]*>/, ""),
           longitude: row.at_css("longitude").inner_text.to_f,
@@ -25,7 +25,7 @@ module Seeder
     end
 
 
-##Help write a test for this
+
     def self.get_description(row)
       description = row.at_css("long_description").inner_text
       if description.empty?

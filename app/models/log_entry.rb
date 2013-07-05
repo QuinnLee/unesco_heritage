@@ -6,7 +6,7 @@ class LogEntry < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
 
-  validates :location, presence: true
+  validates :location, presence: true 
   validates :user, presence: true
   validates :first_date, presence: true
   validates :last_date, presence: true
@@ -16,30 +16,8 @@ class LogEntry < ActiveRecord::Base
   attr_accessible :location, :user, :first_date, :last_date
 
   delegate :name, :longitude, :latitude, :category, :region, :states, :description,
-    :image_url, :http_url, to: :location
+    :image_url, :http_url, :to => :location
 
-
-   ## get rid of selfs 
-  def poly_line
-    Hash['lng', self.longitude , 'lat', self.latitude, "strokeColor", "#00000", "strokeWeight", 3]
-  end
-
-  def gmaps4rails_marker_picture
-  {
-   "picture" => self.image_url,
-   "width" => 40,
-   "height" => 40,
-   "marker_anchor" => [13, 35]
-  }
-  end
-
-  def gmaps4rails_infowindow
-    "<div class='location-infobox'> <a href=/locations/#{location.id}>#{name}</a> <p>Date visited: #{first_date.to_s}</p> <p>Located: #{states}</p> </div>"
-  end
-  
-  def gmaps4rails_title
-    self.name
-  end
 
   def set_first_date(first_date)
     self[:first_date] = Chronic.parse(first_date).to_date
@@ -49,6 +27,30 @@ class LogEntry < ActiveRecord::Base
     self[:last_date] = Chronic.parse(last_date).to_date
   end
 
+  ## Methods for Gmaps to generate markers and polylines
+  def poly_line
+    Hash['lng', longitude , 'lat', latitude, "strokeColor", "#00000", "strokeWeight", 3]
+  end
+
+  def gmaps4rails_marker_picture
+  {
+   "picture" => image_url,
+   "width" => 40,
+   "height" => 40,
+   "marker_anchor" => [13, 35]
+  }
+  end
+
+  ## TODO find a better way to do this
+  def gmaps4rails_infowindow
+    "<div class='location-infobox'> <a href=/locations/#{location.id}>#{name}</a> <p>Date visited: #{first_date.to_s}</p> <p>Located: #{states}</p> </div>"
+  end
+  
+  def gmaps4rails_title
+    self.name
+  end
+
+  # Date ranges cannot overlap for each user
   class << self
     def overlaps(first_date, last_date, user_id)
       where "(first_date,last_date) OVERLAPS (?,?) AND user_id = ?", first_date, last_date, user_id

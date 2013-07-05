@@ -15,3 +15,9 @@
 /tmp
 
 spec/cassettes/Seeder_Locations/seeds_the_location_table.yml
+
+spec/cassettes/Seeder_Locations/_get_description/gets_a_description_from_the_row.yml
+
+spec/cassettes/Seeder_Locations/.DS_Store
+
+spec/cassettes/Seeder_Locations/_get_description/.DS_Store

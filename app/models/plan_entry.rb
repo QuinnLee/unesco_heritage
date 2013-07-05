@@ -7,13 +7,14 @@ class PlanEntry < ActiveRecord::Base
   validates :location, presence: true
   validates :plan, presence: true
   
-  attr_accessible :location, :plan_id, :date
+  attr_accessible :location, :plan, :date
 
   delegate :name, :longitude, :latitude, :category, :region, :states, :description,
-    :image_url, :http_url, to: :location
+    :image_url, :http_url, :to =>  :location
 
+ ## Methods for Gmaps to generate markers and polylines
   def poly_line
-    Hash['lng', self.longitude , 'lat', self.latitude, "strokeColor", self.plan.color, "strokeWeight", 3]
+    Hash['lng', longitude , 'lat', latitude, "strokeColor", plan.color, "strokeWeight", 3]
   end
 
   def gmaps4rails_marker_picture
@@ -39,10 +40,10 @@ class PlanEntry < ActiveRecord::Base
   end
 
   def plan_name
-    self.plan.name
+    plan.name
   end
 
   def location_name
-    self.location.name
+    location.name
   end
 end

@@ -9,18 +9,18 @@ class Plan < ActiveRecord::Base
   has_many :plan_entries, :dependent => :destroy
   has_many :locations, :through => :plan_entries
   
-  attr_accessible :description, :name, :user_id, :color
+  attr_accessible :description, :name, :user, :color
 
   def set_color
     self.color = random_color
   end
 
-  def marker
-    self.plan_entries.to_gmaps4rails
-  end
-
   def self.users_plan(user)
    Plan.where(user_id: user)
+  end
+
+  def marker
+    self.plan_entries.to_gmaps4rails
   end
   
   private

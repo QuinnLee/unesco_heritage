@@ -18,14 +18,17 @@ class LocationsController < ApplicationController
 
     @nearby_locations = @location.nearbys(300, :units => :km).page(params[:page]).per(10)
 
-    @users_log_entries = cartographer.user_log_entries
-    @users_plan_entries = cartographer.users_plan_entries
-
     @log_entry = @location.log_entries.build
     @plan_entry = @location.plan_entries.build
     
     @json = cartographer.markers
-    @polyline = cartographer.polylines if current_user
+
+    if current_user
+      @polyline = cartographer.polylines
+      @users_log_entries = cartographer.user_log_entries
+      @users_plan_entries = cartographer.users_plan_entries
+    end
+
   end  
 
 

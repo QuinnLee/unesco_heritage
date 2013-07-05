@@ -14,6 +14,9 @@ describe User do
 
   it { should validate_uniqueness_of(:email) }
 
-  it { should have_many(:plans) }
+  it { should have_many(:plans).dependent(:destroy)  }
+  it { should have_many(:plan_entries).through(:plans) }
+
+  it { should have_many(:log_entries).dependent(:destroy)  }
   it { should have_many(:locations).through(:log_entries) }
 end
