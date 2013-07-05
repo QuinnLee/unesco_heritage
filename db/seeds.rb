@@ -6,3 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+url = "http://whc.unesco.org/en/list/xml/"
+
+Seeder::Locations.seed_from(url)
