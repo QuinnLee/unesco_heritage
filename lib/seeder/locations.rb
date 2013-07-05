@@ -24,13 +24,14 @@ module Seeder
       end
     end
 
+
+##Help write a test for this
     def self.get_description(row)
-      long_desription = row.at_css("long_description").inner_text
-      if long_desription.empty?
-        row.at_css("short_description").inner_text
-      else
-        long_desription
+      desription = row.at_css("long_description").inner_text
+      if desription.empty?
+        desription = row.at_css("short_description").inner_text
       end
+      description
     end
 
   end

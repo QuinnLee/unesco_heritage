@@ -10,5 +10,4 @@ describe Seeder::Locations, :vcr do
     expect(Location.count).to_not be_eql (origin_count)
   end
 
-
 end

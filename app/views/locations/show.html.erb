@@ -13,7 +13,7 @@
   <div class="row">
   <ul>
     <% @nearby_locations.each do |location| %>
-      <li><%= link_to location.name, location, class: "location mark", data: { lat: location.latitude, long: location.longitude } %> (<%= location.distance.to_f.round(2) %> km)</li>
+      <li><%= link_to location.name, location, class: "mark", data: { lat: location.latitude, long: location.longitude } %> (<%= location.distance.to_f.round(2) %> km)</li>
     <% end %>
   </ul>
   <%= paginate @nearby_locations %>
