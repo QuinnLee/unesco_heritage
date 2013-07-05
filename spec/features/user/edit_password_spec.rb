@@ -28,7 +28,8 @@ feature "a user can edit their password" do
     fill_in "Password", with: "1qaz2wsx"
     fill_in "Password confirmation", with: "1qaz2wsx111"
     fill_in "Current password", with: valid_user.password
+
     click_button "Update"
-    expect(page).to have_content("1 error")
+    expect(page).to have_content("Please review the problems below")
   end
 end

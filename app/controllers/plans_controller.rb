@@ -14,6 +14,10 @@ class PlansController < ApplicationController
   def show
     @plan = current_user.plans.find(params[:id])
     @plan_entries = @plan.plan_entries
+    cartographer = Cartographer.new(plan: @plan)
+
+    @polyline = cartographer.single_plan_polylines
+    @json = @plan_entries.to_gmaps4rails
   end
 
   def destroy

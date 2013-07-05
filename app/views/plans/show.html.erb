@@ -1,18 +1,33 @@
 <div class="container">
   <div class="row">
-    <h2><%= @plan.name %></h2>
+    <div class="span10 offset1">
+      <h2><%= @plan.name %></h2>
+      <h3>There is <%= pluralize(@plan_entries.size,'Destination') %></h3>
+      <table class="table">
+        <% @plan_entries.each do |plan_entry| %>
+        <tbody>
+          <td>
+            <p><%= link_to smart_truncate(plan_entry.location_name), plan_entry.location,class: "location", data: { lat: plan_entry.location.latitude, long: plan_entry.location.longitude } %></p>
+          </td>
+            <%= simple_form_for ([plan_entry.location,plan_entry]) do |f| %>
+              <td><%= f.text_field :date, class: 'plan_entry_date'  %></td>
+              <td><%= f.button :submit, value: "Set Date", class: 'btn btn-mini update' %></td>
+            <% end %>             
 
-    <h3>There is <%= pluralize(@plan_entries.size,'Destination') %></h3>
-      <% @plan_entries.each do |plan_entry| %>
-        <%= link_to smart_truncate(plan_entry.location_name), plan_entry.location %>
-          <%= simple_form_for ([plan_entry.location,plan_entry]) do |f| %>
-            <%= f.text_field :date, class: 'plan_entry_date'  %>
-            <%= f.button :submit, value: "Set Date" %>
-          <% end %>
-        <%= button_to 'Delete Entry', [plan_entry.location,plan_entry], method: :delete, class: 'btn', data: { confirm: 'Are you sure?' } %>
-      <% end %>
-
-    <%= button_to 'Delete Plan', @plan, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' } %>
-
+          <td>
+            <%= button_to 'Delete Entry', [plan_entry.location,plan_entry], method: :delete, class: 'btn btn-mini', data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
+        </tbody>
+      </table>
+      <%= button_to 'Delete Plan', @plan, class: 'btn btn-danger btn-large', method: :delete, data: { confirm: 'Are you sure?' } %>        
+    </div>  
   </div>
+</div>
+<div id="plan-show" class="container">
+  <%= gmaps(
+    map_options: {auto_zoom: false, zoom: 2, do_clustering: true },
+    markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
+    polylines: { data: @polyline }
+  ) %>    
 </div>
