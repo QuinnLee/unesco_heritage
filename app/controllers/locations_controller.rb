@@ -35,7 +35,10 @@ class LocationsController < ApplicationController
   private 
   ## Devise and Geocode interaction requires this
   def force_geocode!
-    current_user.geocode unless current_user.latitude.present? && current_user.longitude.present?
+    if current_user
+      current_user.geocode unless current_user.latitude.present? 
+        && current_user.longitude.present?
+    end
   end
 
 end
