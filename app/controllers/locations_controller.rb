@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  before_filter :force_geocode!
+
   def index
     @search = Location.search(params[:q])
     @locations = @search.result.page params[:page]
@@ -7,7 +9,6 @@ class LocationsController < ApplicationController
 
     @categories = Location.categories
     @regions = Location.regions
-
     @json = cartographer.markers
     @polyline = cartographer.polylines if current_user
   end
@@ -31,5 +32,13 @@ class LocationsController < ApplicationController
 
   end  
 
+  private 
+  ## Devise and Geocode interaction requires this
+  def force_geocode!
+    if current_user
+      current_user.geocode unless current_user.latitude.present? 
+        && current_user.longitude.present?
+    end
+  end
 
 end
