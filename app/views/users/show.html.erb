@@ -22,12 +22,7 @@
     </div>
     
     <div class="span7">
-      <%= gmaps(
-         map_options: {auto_zoom: false, zoom: 2, do_clustering: true },
-         markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
-         polylines: { data: @polyline }
-         )
-      %>    
+      <%= render 'shared/gmaps' %>
     </div>
   </div>
 </div>

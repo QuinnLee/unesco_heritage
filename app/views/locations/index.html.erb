@@ -48,23 +48,8 @@
       </table>
    </div>
    <div id="location-index" class="span9">
-    <%if current_user %>
-      <%= gmaps(
-         map_options: {auto_zoom: false, zoom: 2},
-         markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
-         polylines: { data: @polyline }
-         )
-      %>
-    <% else %>
-      <%= gmaps(
-         map_options: {auto_zoom: false, zoom: 2},
-         markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }'}}
-         )
-      %>
-    <% end %>
+      <%= render 'shared/gmaps' %>
     </div>
   </div>
-
-
   <%= paginate @locations %>  
 </div>
