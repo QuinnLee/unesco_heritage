@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
     @categories = Location.categories
     @regions = Location.regions
     @json = cartographer.markers
-    @polyline = cartographer.polylines if current_user
+    @polyline = cartographer.polylines
   end
 
   def show
@@ -23,12 +23,10 @@ class LocationsController < ApplicationController
     @plan_entry = @location.plan_entries.build
     
     @json = cartographer.markers
-
-    if current_user
-      @polyline = cartographer.polylines
-      @users_log_entries = cartographer.user_log_entries
-      @users_plan_entries = cartographer.users_plan_entries
-    end
+    @polyline = cartographer.polylines
+      
+    @users_log_entries = cartographer.user_log_entries
+    @users_plan_entries = cartographer.users_plan_entries 
 
   end  
 
@@ -36,8 +34,10 @@ class LocationsController < ApplicationController
   ## Devise and Geocode interaction requires this
   def force_geocode!
     if current_user
-      current_user.geocode unless current_user.latitude.present? 
-        && current_user.longitude.present?
+      unless current_user.latitude.present? && current_user.longitude.present?
+        current_user.geocode
+        current_user.save
+      end
     end
   end
 

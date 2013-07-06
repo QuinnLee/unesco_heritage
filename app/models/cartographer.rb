@@ -7,11 +7,19 @@ class Cartographer
   end
 
   def user_log_entries
-    @user.log_entries.where(location_id: @location) 
+    if @user.present?
+      @user.log_entries.where(location_id: @location) 
+    else
+      []
+    end
   end
 
   def users_plan_entries
-    @user.plan_entries.where(location_id: @location).uniq_by(&:plan_id) 
+    if @user.present?
+      @user.plan_entries.where(location_id: @location).uniq_by(&:plan_id)
+    else
+      []
+    end
   end
 
   def markers
@@ -23,49 +31,62 @@ class Cartographer
   end
 
   def polylines
-    line = [log_polyline, clean_plans_polylines].flatten.join(",")
-   "[#{line}]"    
+    if @user.present?
+      line = [log_polyline,plans_polylines].flatten.join(",")
+      "[#{line}]"
+    else
+      "[]"
+    end
   end
 
   def sorted_log_entries
     LogEntry.where(user_id: @user).order(:first_date).reverse_order
   end
 
-  def single_plan_polylines
-    "[#{plan_polyine(@plan).to_json}]"
-  end
-
   private
 
-  def plans_locations
-    @user.plans.map{|plan| plan.marker }.reject{|coordinates| coordinates == "[]"}
+  def set_plan
+    if @plan.present?
+      [@plan] 
+    else
+      @user.plans
+    end
+  end
+
+  def plan_locations
+    markers = set_plan.map{|plan| plan.marker }
+    cleaner(markers)
   end
 
   def user_map_marker
     markers = []
     markers << JSON.parse(@user.to_gmaps4rails)
-    plans_locations.each {|marker_set|markers << JSON.parse(marker_set)}
+    plan_locations.each {|marker_set|markers << JSON.parse(marker_set)}
     markers << JSON.parse(@user.log_entries.to_gmaps4rails)
   end
 
   def log_polyline
-    sorted_log_entries.map{|entry| entry.poly_line}.to_json
+    line = sorted_log_entries.map{|entry| entry.poly_line}
+    line.unshift(@user.log_polyline)
+    line.to_json
   end
 
-  def plans_polyline
-    @user.plans.map do |plan|
-      plan_polyine(plan)
-    end
+  def users_plan_polylines
+    set_plan.map {|plan| set_single_plan_polyline(plan)}
   end
 
-  def clean_plans_polylines
-    plans_polyline.map{|set| set.to_json}.reject{|coordinates| coordinates == "[]"}
+  def plans_polylines
+    polyline = users_plan_polylines.map{|set| set.to_json}
+    cleaner(polyline)
   end
 
-  def plan_polyine(plan)
-    plan.plan_entries.map do |entry|
-      entry.poly_line
-    end
+  def set_single_plan_polyline(plan)
+    plan.plan_entries.map {|entry| entry.poly_line}.
+      unshift(@user.plan_polyline(plan))
+  end
+
+  def cleaner(object)
+    object.reject{|coordinates| coordinates == "[]"}
   end
 
 end
