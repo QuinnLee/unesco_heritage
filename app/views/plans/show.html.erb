@@ -25,9 +25,5 @@
   </div>
 </div>
 <div id="plan-show" class="container">
-  <%= gmaps(
-    map_options: {auto_zoom: false, zoom: 2, do_clustering: true },
-    markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
-    polylines: { data: @polyline }
-  ) %>    
+  <%= render 'shared/gmaps' %>
 </div>

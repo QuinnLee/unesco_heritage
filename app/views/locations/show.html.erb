@@ -20,20 +20,7 @@
   </div>
 
   <div id="location-show" class="row">
-  <%if current_user %>
-    <%= gmaps(
-       map_options: {auto_zoom: false, zoom: 2},
-       markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }' }},
-       polylines: { data: @polyline }
-       )
-    %>
-  <% else %>
-    <%= gmaps(
-       map_options: {auto_zoom: false, zoom: 3},
-       markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }'}}
-       )
-    %>
-  <% end %>
+    <%= render 'shared/gmaps' %>
   </div>
 
   <%= render 'user_location_show' %>
