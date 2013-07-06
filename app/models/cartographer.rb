@@ -43,6 +43,7 @@ class Cartographer
 
   def user_map_marker
     markers = []
+    markers << JSON.parse(@user.to_gmaps4rails)
     plans_locations.each {|marker_set|markers << JSON.parse(marker_set)}
     markers << JSON.parse(@user.log_entries.to_gmaps4rails)
   end
