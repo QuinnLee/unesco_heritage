@@ -21,3 +21,7 @@ spec/cassettes/Seeder_Locations/_get_description/gets_a_description_from_the_row
 spec/cassettes/Seeder_Locations/.DS_Store
 
 spec/cassettes/Seeder_Locations/_get_description/.DS_Store
+
+spec/cassettes/geolocate_user/_user_logs_in.yml
+
+spec/cassettes/geolocate_user/_user_s_ip_changes.yml
