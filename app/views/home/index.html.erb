@@ -28,13 +28,8 @@
     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
   </div>
   <div class="row">
-   <% if @json.present? %>
     <div class="span6">
-      <%= gmaps(
-         map_options: {auto_zoom: false, zoom: 5},
-         markers: { data: @json, options: {rich_marker: true ,raw: '{ optimized: false }'}}
-         )
-      %>
+      <%= render 'shared/gmaps' %>
     </div>
     <div class="span6">
       <h2><%= link_to @location.name.html_safe, @location %></h2>
@@ -42,7 +37,6 @@
       <%= truncate(@location.description, length: 900).html_safe %>
     </div>
   </div>
-  <% end %>
 </div>
 
 

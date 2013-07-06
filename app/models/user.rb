@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   acts_as_gmappable :process_geocoding => false
 
   geocoded_by :current_sign_in_ip,
-  :latitude => :latitude, :longitude => :longitude
+    :latitude => :latitude, :longitude => :longitude
   
   after_validation :geocode,
     :if => lambda{ |obj| obj.current_sign_in_ip_changed? }
@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,
     :longitude, :latitude
   # attr_accessible :title, :body  
+
   def gmaps4rails_address
     "#{latitude},#{longitude}"
   end
@@ -36,6 +37,14 @@ class User < ActiveRecord::Base
    "width" => 40,
    "height" => 40
   }
+  end
+
+  def log_polyline
+     Hash['lng', longitude , 'lat', latitude, "strokeColor", "#00000", "strokeWeight", 3]
+  end
+
+  def plan_polyline(plan)
+    Hash['lng', longitude , 'lat', latitude, "strokeColor", plan.color, "strokeWeight", 3]
   end
 
 end
