@@ -23,7 +23,6 @@
         <% if user_signed_in? %>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
-              <%= image_tag avatar_url(current_user) %>
               <%= current_user.email %>
               <b class='caret'></b>
             </a>
@@ -33,6 +32,10 @@
               <%= active_link_to 'Logout', destroy_user_session_path, method: :delete, :wrap_tag => :li %>
             </ul>
           </li>
+          <%= link_to (image_tag avatar_url(current_user), 
+          :class => "user-location", 
+          :data => { :long => current_user.longitude, :lat=> current_user.latitude }),
+          user_path(current_user) %>
         <% else %>
           <%= active_link_to 'Sign up', new_user_registration_path, :wrap_tag => :li %>
           <li class="dropdown">
