@@ -25,6 +25,12 @@ describe LogEntry do
       expect(log_entry_valid_diff_user).to be_valid
     end
 
+    it "rejects if first_date > last_date" do
+      log_entry = LogEntry.new
+      log_entry.first_date = Date.parse('1999-11-11')
+      log_entry.last_date = Date.parse('1998-11-11')
+      expect(log_entry).to_not be_valid
+    end
   end
 
   describe "#set_first_date" do
