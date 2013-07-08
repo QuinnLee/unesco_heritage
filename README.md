@@ -1,3 +1,3 @@
 breakable_toy
 =============
-App found at http://quiet-shelf-2267.herokuapp.com/
+App found at http://world-traveller.herokuapp.com
