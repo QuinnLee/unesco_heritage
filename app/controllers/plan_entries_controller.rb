@@ -9,7 +9,7 @@ class PlanEntriesController < ApplicationController
       flash[:notice] = "You have added #{@location.name} was added to #{@plan_entry.plan_name}"
       redirect_to plan_path(@plan_entry.plan)
     else
-      flash[:error] = "Blah"
+      flash[:error] = "What??! How can a Plan not have a NAME!?!?"
       redirect_to location_path(@location)
     end
   end
@@ -17,7 +17,7 @@ class PlanEntriesController < ApplicationController
   def update
     @plan_entry = PlanEntry.find(params[:id])
     if @plan_entry.update_attributes(params[:plan_entry])
-      flash[:notice] = " #{@plan_entry.location_name} Successfully updated!"  
+      flash[:notice] = " #{@plan_entry.location_name} Successfully updated! w00t!"  
       redirect_to :back
     else
       flash[:error] = "Something is wrong with the date"
