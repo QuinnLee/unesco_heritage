@@ -1,5 +1,5 @@
 .launch-banner{
-  padding: 20px 0px 20px 0px;
+  padding: 75px 0px 50px 0px;
   /*fix image */
   background: url(http://ww1.prweb.com/prfiles/2007/09/19/272521/MissouriRiverCountryWildlife1.JPG) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -9,7 +9,7 @@
   .form{
     float: right;
     background-color: white;
-    padding: 0px 50px 0px 50px;
+    padding: 0px 70px 0px 50px;
     border: 2px;
     -moz-border-radius: 15px;
     border-radius: 15px;
@@ -23,5 +23,26 @@
   .map_container{
     width: 400px;
     height: 400px;
+  }
+}
+
+.container.intro{
+  text-align: center;
+}
+
+.description{
+  text-align: right;
+}
+
+#about{
+  .gmaps4rails_map{
+    height: 500px;
+    width:967px;
+  }
+  .map_container{
+    width: 967px;
+  }
+  img{
+    margin: 0 10px 0 10px;
   }
 }
