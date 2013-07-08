@@ -33,7 +33,10 @@ describe Cartographer do
     let!(:user){FactoryGirl.create(:user)}
 
     it "returns locations around 1000km around the user" do
-    
+      user.current_sign_in_ip = "127.0.0.0.1"
+      user.geocode
+
+      
     end
   end
 
@@ -48,8 +51,8 @@ describe Cartographer do
     it "returns sorted log entry for user descending order" do
       results = Cartographer.new(user: user, location: location).sorted_log_entries
 
-      expect(results[0]).to eql log_entry_2
-      expect(results[1]).to eql log_entry_1
+      expect(results[0]).to eql log_entry_1
+      expect(results[1]).to eql log_entry_2
     end
   end
 
