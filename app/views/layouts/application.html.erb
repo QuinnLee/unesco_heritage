@@ -48,15 +48,14 @@
     </div>
   </div>
 </div>
-
 <%= yield %>
 <%= yield :scripts %>
   <footer class="container ">
     <div class="row">
       <div class="navbar span4 offset4">
-        <ul class="nav ">
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
+        <ul class="nav">
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "About", about_path %></li>
           <li><a href="https://github.com/QuinnLee/breakable_toy">Code</a></li>
         </ul>
       </div>

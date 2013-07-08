@@ -28,7 +28,7 @@
   <div class="featurette">
     <div id="home-info" class="row">
       <div class="span4 offset2">
-        <img class="img-circle" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;">
+        <img class="img-circle" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;" src="images/circle3.png">
         <h2>How to use</h2>
         <p class="lead muted">Click on <%= link_to"here", locations_path %> or Explorer at the top
           to start exploring, but read 'more info' first!</p>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="span4">
-        <img class="img-circle" data-src="holder.js/140x140" style="width: 140px; height: 140px;">
+        <img class="img-circle" data-src="holder.js/140x140" style="width: 140px; height: 140px;" src="images/circle1.png">
         <h2>About </h2>
         <p class="lead muted">What are World Heritage sites? Click the link to find out! Be careful, it's on another page.</p>
         <p><a class="btn" href="http://whc.unesco.org/en/about/">More info &raquo;</a></p> 
@@ -51,10 +51,12 @@
     <div class="span6">
       <%= render 'shared/gmaps' %>
     </div>
-    <div class="span6">
+    <div class="span6 ">
       <h2><%= link_to @location.name.html_safe, @location %></h2>
       <p class="lead"> Located: <%= @location.region %>, <%= @location.states %></p>
-      <%= truncate(@location.description, length: 900).html_safe %>
+      <div class="description">
+        <%= truncate(@location.description, length: 900).html_safe %>
+      </div>
     </div>
   </div>
 </div>
