@@ -29,6 +29,14 @@ describe Cartographer do
     end
   end
 
+  describe "#locations_near_user" do
+    let!(:user){FactoryGirl.create(:user)}
+
+    it "returns locations around 1000km around the user" do
+    
+    end
+  end
+
   describe "#sorted_log_entries" do
     let!(:log_entry_1) { FactoryGirl.create(:log_entry) }
     let(:date) { Time.now.to_date }
@@ -44,5 +52,7 @@ describe Cartographer do
       expect(results[1]).to eql log_entry_1
     end
   end
+
+
 
 end
