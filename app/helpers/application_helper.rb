@@ -1,5 +1,7 @@
  module ApplicationHelper
   include Gravatar
+  
+  ##Add Devise Mappings, user model to devise resource 
 
   def resource_name
     :user

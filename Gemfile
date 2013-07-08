@@ -3,10 +3,10 @@ ruby '1.9.3'
 
 gem 'rails', '3.2.13'
 
-gem 'pg'
-gem 'thin'
-gem 'gmaps4rails'
-gem 'geocoder'
+gem 'pg' #DB gem
+gem 'thin' #Ruby web server
+gem 'gmaps4rails' #GMaps
+gem 'geocoder' #gecoder
 
 
 group :assets do
@@ -40,11 +40,11 @@ group :test, :development do
   gem 'pry-rails'
 end
 
-gem "nokogiri"
-gem "devise"
-gem 'ransack'
-gem "chronic"
-gem 'simple_form'
-gem 'kaminari'
-gem 'active_link_to'
-gem 'pickadate-rails'
+gem "nokogiri" #scraping
+gem "devise"  #user auth
+gem 'ransack' #searching
+gem "chronic" #parsing dates
+gem 'simple_form' #organizing forms
+gem 'kaminari'  #pagination
+gem 'active_link_to' # Creates a link tag 
+gem 'pickadate-rails' #Jquery date picker
