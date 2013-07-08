@@ -36,8 +36,9 @@ group :test, :development do
   gem "better_errors"
   gem "rspec-rails"
   gem "capybara"
-  gem "launchy"
+  gem "launchy" # save and open page
   gem 'pry-rails'
+  gem 'dotenv-rails' #export secret token
 end
 
 gem "nokogiri" #scraping
