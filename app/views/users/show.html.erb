@@ -39,7 +39,8 @@
             <%= link_to location.name, location_path(location) %>
           </li>
         </ul>
-      <% end %>      
+      <% end %>  
+      <%= paginate @recomended %>     
     </div>
     <div class="span5">
       <h1>Plan Log</h1>
@@ -58,4 +59,4 @@
     </div>
   </div>
 </div>
-<%= paginate @recomended %> 
+
