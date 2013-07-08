@@ -10,7 +10,7 @@ class Cartographer
   end
 
   def user_log_entries
-    if @user.present?
+    @user_log_entries ||= if @user.present?
       @user.log_entries.where(location_id: @location) 
     else
       []
@@ -18,7 +18,7 @@ class Cartographer
   end
 
   def locations_near_user
-    if @user.present?
+     @locations_near_user ||= if @user.present?
       Location.near([@user.latitude, @user.longitude], 1000, :units => :km, :order => :distance)
     else
       []
@@ -26,7 +26,7 @@ class Cartographer
   end
 
   def users_plan_entries
-    if @user.present?
+    @users_plan_entries ||= if @user.present?
       @user.plan_entries.where(location_id: @location).uniq_by(&:plan_id)
     else
       []
@@ -42,7 +42,7 @@ class Cartographer
   end
 
   def polylines
-    if @user.present?
+    @polylines ||= if @user.present?
       line = [log_polyline,plans_polylines].flatten.join(",")
       "[#{line}]"
     else
