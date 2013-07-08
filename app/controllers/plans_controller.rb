@@ -3,7 +3,7 @@ class PlansController < ApplicationController
     @plan = current_user.plans.create(params[:plan])
 
     if @plan.save
-      flash[:notice] = "Plan has been made"
+      flash[:notice] = "Plan has been made visit the Explorer"
       redirect_to plan_path( @plan)
     else
       flash[:error] = "Invalid name"
