@@ -7,7 +7,6 @@ require "spec_helper"
 ## Log off button
 ## redirect to home#index
 
-#TODO FIX TEST
 feature "a user logging off" do 
   let (:valid_user) do
     FactoryGirl.create(:user)
