@@ -1,3 +1,6 @@
+## This class creates the marker points and polylines for the gmaps
+## I would rather re-write the Gem, Gmaps4rails. But I ain't got no time for this
+
 class Cartographer
 
   def initialize(options = {})
@@ -9,6 +12,14 @@ class Cartographer
   def user_log_entries
     if @user.present?
       @user.log_entries.where(location_id: @location) 
+    else
+      []
+    end
+  end
+
+  def locations_near_user
+    if @user.present?
+      Location.near([@user.latitude, @user.longitude], 200, :units => :km, :order => :distance)
     else
       []
     end
