@@ -10,6 +10,7 @@ BreakableToy::Application.routes.draw do
     resources :plan_entries, only: [:create, :destroy, :update]
   end
 
-  root :to => "home#index"
+  root :to => "static#home"
 
+  match "about" => "static#about"
 end

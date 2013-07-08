@@ -6600,3 +6600,9 @@ i[class^="icon-"] {
 .affix {
   position: fixed;
 }
+
+a:hover{
+  text-decoration: none;
+  color:black;
+}
+

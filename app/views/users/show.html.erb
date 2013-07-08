@@ -1,4 +1,5 @@
 <div class="container">
+  <%= render 'layouts/flash_messages' %>
   <div id="travel-journal" class="row">
     <div class="span5">
       <h1>Travel Journal</h1>
@@ -25,21 +26,31 @@
       <%= render 'shared/gmaps' %>
     </div>
   </div>
+<hr>
 </div>
+<div id="users-info" class="container">
+  <div class="row">
+    <div class="span7">
+      <h1>Recommendations</h1>
+        <% @recomended.each do |location| %>
+         <h2><%= link_to location.name, location_path(location) %></h2>
+        <% end %>      
+    </div>
+    <div class="span5">
+      <h1>Plan Log</h1>
+      <%= simple_form_for (@plan) do |f| %>
+        <%= f.input :name %>
+        <%= f.button :submit, :class => 'btn btn-secondary' %>
+      <% end %>
 
-<div class="container">
-  <h1>Plan Log</h1>
-  <%= simple_form_for (@plan) do |f| %>
-    <%= f.input :name %>
-    <%= f.button :submit, :class => 'btn btn-secondary' %>
-  <% end %>
+      <h3><%= pluralize(@plans.size, 'Plan') %></h3>
 
-  <h3><%= pluralize(@plans.size, 'Plan') %></h3>
-
-  <% if @plans.size > 0 %>
-    
-    <% @plans.each do |plan| %>
-     <h3><%= link_to plan.name, plan_path(plan) %></h3>
-    <% end %>
-  <% end %>  
+      <% if @plans.size > 0 %>
+        <% @plans.each do |plan| %>
+         <h3><%= link_to plan.name, plan_path(plan) %></h3>
+        <% end %>
+      <% end %>  
+    </div>
+  </div>
 </div>
+<%= paginate @recomended %> 

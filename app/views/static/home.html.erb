@@ -1,0 +1,60 @@
+<div class="container">
+    <%= render 'layouts/flash_messages' %>
+</div>
+
+<div class="row launch-banner">
+  <div class="container">
+    <div id="sign_up" class="offset11 span3 form">
+      <h2>Sign up</h2>
+      <%= simple_form_for('user', url: user_registration_path, html: {id:'sign_up'}) do |f| %>
+        <%= f.input :email %>
+        <%= f.input :password %>
+        <%= f.input :password_confirmation %>
+        <%= f.button :submit, value: "Sign up" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container intro">
+  <hr class="featurette-divider">
+  <div class="row">
+    <div class="span12">
+      <h2 class="featurette-heading">Welcome to World Explorer! <span class="muted">Discover what World Heritage</span></h2>
+      <p class="lead">Heritage is our legacy from the past, what we live with today, and what we pass on to future generations. Our cultural and natural heritage are both irreplaceable sources of life and inspiration. <br> Places as unique and diverse as the wilds of East Africa’s Serengeti, the Pyramids of Egypt, the Great Barrier Reef in Australia and the Baroque cathedrals of Latin America make up our world’s heritage.</p>
+    </div>
+  </div>
+
+  <div class="featurette">
+    <div id="home-info" class="row">
+      <div class="span4 offset2">
+        <img class="img-circle" data-src="holder.js/140x140" alt="140x140" style="width: 140px; height: 140px;">
+        <h2>How to use</h2>
+        <p class="lead muted">Click on <%= link_to"here", locations_path %> or Explorer at the top
+          to start exploring, but read 'more info' first!</p>
+        <p><a class="btn" href="/about">More info &raquo;</a></p> 
+      </div>
+
+      <div class="span4">
+        <img class="img-circle" data-src="holder.js/140x140" style="width: 140px; height: 140px;">
+        <h2>About </h2>
+        <p class="lead muted">What are World Heritage sites? Click the link to find out! Be careful, it's on another page.</p>
+        <p><a class="btn" href="http://whc.unesco.org/en/about/">More info &raquo;</a></p> 
+      </div>
+    </div>
+  <hr class="featurette-divider">
+  </div>
+  <div class="row">
+    <div class="span12">
+      <h1>Heritage site</h1>
+    </div>
+    <div class="span6">
+      <%= render 'shared/gmaps' %>
+    </div>
+    <div class="span6">
+      <h2><%= link_to @location.name.html_safe, @location %></h2>
+      <p class="lead"> Located: <%= @location.region %>, <%= @location.states %></p>
+      <%= truncate(@location.description, length: 900).html_safe %>
+    </div>
+  </div>
+</div>
