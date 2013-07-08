@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
 
   def index
     @search = Location.search(params[:q])
-    @locations = @search.result.page params[:page]
+    @locations = @search.result.page(params[:page]).per(16)
 
     cartographer = Cartographer.new(user: current_user, location: @locations)
 
