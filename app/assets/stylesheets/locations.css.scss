@@ -12,6 +12,14 @@
 
 #location-index{
     padding-top: 75px;
+
+  .gmaps4rails_map{
+    height: 600px;
+    width:687px;
+  }
+  .map_container{
+    width: 687px;
+  }
 }
 
 
@@ -24,7 +32,7 @@
   }
 }
 
-#location-show{
+#location-show {
   .gmaps4rails_map{
     height: 300px;
     width:967px;
@@ -40,4 +48,8 @@
   .info{
     padding-left: 45px;
   }
+  h4{
+    font-size: 20px;
+  }
 }
+

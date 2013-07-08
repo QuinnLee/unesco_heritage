@@ -1,4 +1,6 @@
 <div class="container">
+  <%= render 'layouts/flash_messages' %>
+  
   <div id="title"class="row">
     <h2><a href="<%= @location.http_url.html_safe %>"><%= @location.name %></a></h2>
   </div>

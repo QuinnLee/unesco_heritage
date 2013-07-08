@@ -35,7 +35,8 @@ class User < ActiveRecord::Base
   {
    "picture" => avatar_url(self),
    "width" => 40,
-   "height" => 40
+   "height" => 40,
+   "marker_anchor" => [13, 35]
   }
   end
 

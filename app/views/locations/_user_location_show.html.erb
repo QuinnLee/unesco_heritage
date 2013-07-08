@@ -28,6 +28,9 @@
     <div class="span4">
       <h2>Want to go here?</h2>
       <h3>This location is in <%= pluralize(@users_plan_entries.size,'plan') %></h3>
+      <% if current_user.plans.count == 0  %>
+        <h3><%= link_to "Make a Plan!", user_path(current_user) %></h3>
+      <% end %>
         <% unless @users_plan_entries == nil %>
           <% @users_plan_entries.each do |plan_entry| %>
             <h3><%= link_to "#{plan_entry.plan_name}", plan_path(plan_entry.plan) %></h3>
@@ -39,6 +42,7 @@
             <%= f.association :plan, collection: current_user.plans, include_blank: "Please Select" %>
             <%= f.button :submit, "Add to Plan" %>
           <% end %>
+        <% else %>
         <% end %>  
       </div>
     </div>

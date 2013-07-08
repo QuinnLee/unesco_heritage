@@ -5,8 +5,9 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link type="image/x-icon" href="http://whc.unesco.org/favicon.ico" rel="shortcut icon">
 </head>
-<body>
+<body <%= 'class=home' if @home %>>
 
 <div class="navbar  navbar-fixed-top">
   <div class="navbar-inner">
@@ -23,7 +24,6 @@
         <% if user_signed_in? %>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
-              <%= image_tag avatar_url(current_user) %>
               <%= current_user.email %>
               <b class='caret'></b>
             </a>
@@ -33,6 +33,10 @@
               <%= active_link_to 'Logout', destroy_user_session_path, method: :delete, :wrap_tag => :li %>
             </ul>
           </li>
+          <%= link_to (image_tag avatar_url(current_user), 
+          :class => "user-location", 
+          :data => { :long => current_user.longitude, :lat=> current_user.latitude }),
+          user_path(current_user) %>
         <% else %>
           <%= active_link_to 'Sign up', new_user_registration_path, :wrap_tag => :li %>
           <li class="dropdown">
@@ -45,17 +49,18 @@
   </div>
 </div>
 
-  <% flash.each do |key, value| -%>
-    <div id="flash_<%= key %>"><%=h value %></div>
-  <% end -%>
-  <%= yield %>
-  <%= yield :scripts %>
-
-<div class="container">
-  <footer class="row">
-    <p>made by Quinn Lee</p>
-  </footer>
- </div>
-  
+<%= yield %>
+<%= yield :scripts %>
+  <footer class="container ">
+    <div class="row">
+      <div class="navbar span4 offset4">
+        <ul class="nav ">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="https://github.com/QuinnLee/breakable_toy">Code</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer> 
 </body>
 </html>

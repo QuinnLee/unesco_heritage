@@ -35,6 +35,15 @@ $(function(){
     Gmaps.map.serviceObject.panTo(latlng);
     Gmaps.map.serviceObject.setZoom(7);
   });
+
+  $("img.user-location").hover(function(){
+    var data = $(event.target).data();
+    var lat = data.lat;
+    var lng = data.long;
+    var latlng = new google.maps.LatLng(lat, lng);
+    Gmaps.map.serviceObject.setZoom(3);
+    Gmaps.map.serviceObject.panTo(latlng);
+  });
   
   $("a.mark").hover(function(){
     var data = $(event.target).data();
