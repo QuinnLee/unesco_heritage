@@ -3,7 +3,15 @@
   <div class="row">
     <div class="span10 offset1">
       <h2><%= @plan.name %></h2>
-      <h3>There is <%= pluralize(@plan_entries.size,'Destination') %></h3>
+      <h3>
+        There 
+        <% if @plan_entries.size == 1 %>
+          <%= 'is' %>
+        <% else  %>
+          <%= 'are' %>
+        <% end %>  
+        <%= pluralize(@plan_entries.size,'Destination') %>
+      </h3>
       <table class="table">
         <% @plan_entries.each do |plan_entry| %>
         <tbody>
