@@ -9,7 +9,6 @@ feature "geolocate user", :vcr do
   let!(:user) { FactoryGirl.create(:user) }
 
   scenario "#user logs in" do
-    user = User.first
     user.current_sign_in_ip = "127.0.0.0.1"
     user.geocode
     expect(user.longitude).to_not be_nil
@@ -17,7 +16,6 @@ feature "geolocate user", :vcr do
   end
 
   scenario "#user's ip changes" do 
-    user = User.first
     user.current_sign_in_ip = "127.0.0.0.1"
     user.geocode
 
