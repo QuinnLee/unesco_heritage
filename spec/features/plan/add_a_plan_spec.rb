@@ -10,9 +10,9 @@ require "spec_helper"
 
 feature "adding a plan" do
 
-  let (:valid_user) do
-    FactoryGirl.create(:user)
-  end
+  let (:valid_user){FactoryGirl.create(:user)}
+
+  let!(:location){FactoryGirl.create(:location)}
   
   let(:plan_name){"hello"}
 
@@ -39,7 +39,7 @@ feature "adding a plan" do
 
   def login_and_create_plan
     sign_in_as(valid_user)
-    click_link "User Page"
+    visit (user_path(valid_user))
     fill_in "plan_name", with: plan_name
     click_button "Create Plan"
   end
