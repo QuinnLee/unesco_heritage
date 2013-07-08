@@ -24,8 +24,26 @@
     
     <div class="span7">
       <%= render 'shared/gmaps' %>
+      <h3 class="title">Legend</h3>
+      <div id="legend" class="row">
+        <div class="span1 offset2">
+          <%= image_tag( @location.image_url,  size: "40x40")   %>
+          <p>Visited locations</p>
+        </div>
+
+        <div class="span1">
+          <%= image_tag( '/images/summercamp.png' ,  size: "35x40")   %>
+          <p>Planned Locations</p>
+        </div>
+
+        <div class="span1">
+          <%= image_tag( '/images/worldheritagesite.png' ,  size: "35x40")   %>
+          <p>Heritage Sites</p>
+        </div>
+      </div>
     </div>
   </div>
+<br>
 <hr>
 </div>
 <div id="users-info" class="container">
