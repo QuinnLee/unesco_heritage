@@ -51,7 +51,7 @@ class Cartographer
   end
 
   def sorted_log_entries
-    LogEntry.where(user_id: @user).order(:first_date).reverse_order
+    LogEntry.where(user_id: @user).order(:first_date)
   end
 
   private
