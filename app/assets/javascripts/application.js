@@ -26,7 +26,7 @@ $(function(){
     selectYears: 30,
   });
 
-  $("a.location").hover(function(){
+  $("a.location").hover(function(event){
     var data = $(event.target).data();
     var lat = data.lat;
     var lng = data.long;
@@ -36,7 +36,7 @@ $(function(){
     Gmaps.map.serviceObject.setZoom(7);
   });
 
-  $("img.user-location").hover(function(){
+  $("img.user-location").hover(function(event){
     var data = $(event.target).data();
     var lat = data.lat;
     var lng = data.long;
@@ -45,7 +45,7 @@ $(function(){
     Gmaps.map.serviceObject.panTo(latlng);
   });
   
-  $("a.mark").hover(function(){
+  $("a.mark").hover(function(event){
     var data = $(event.target).data();
     var lat = data.lat;
     var lng = data.long;
@@ -56,7 +56,7 @@ $(function(){
       position: latlng,
       map: Gmaps.map.serviceObject
     });
-  }, function(){
+  }, function(event){
     this.marker.setVisible(false);
   });
 });
