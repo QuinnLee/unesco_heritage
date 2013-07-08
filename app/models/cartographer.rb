@@ -19,7 +19,7 @@ class Cartographer
 
   def locations_near_user
     if @user.present?
-      Location.near([@user.latitude, @user.longitude], 200, :units => :km, :order => :distance)
+      Location.near([@user.latitude, @user.longitude], 1000, :units => :km, :order => :distance)
     else
       []
     end

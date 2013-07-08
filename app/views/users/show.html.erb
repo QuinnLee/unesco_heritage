@@ -32,9 +32,13 @@
   <div class="row">
     <div class="span7">
       <h1>Recommendations</h1>
-        <% @recomended.each do |location| %>
-         <h2><%= link_to location.name, location_path(location) %></h2>
-        <% end %>      
+      <% @recomended.each do |location| %>
+        <ul>
+          <li>
+            <%= link_to location.name, location_path(location) %>
+          </li>
+        </ul>
+      <% end %>      
     </div>
     <div class="span5">
       <h1>Plan Log</h1>
