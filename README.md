@@ -12,7 +12,7 @@ logs and plans.
 There is also a feature to reccomend places the user visits.
 
 Features That I am Working on:
-Distance measurement
-Social aspect e.g. sharing plans
-using WIKI for more data
-Gamification
++ Distance measurement
++ Social aspect e.g. sharing plans
++ using WIKI for more data
++ Gamification
