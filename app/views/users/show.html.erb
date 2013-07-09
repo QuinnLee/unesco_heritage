@@ -1,8 +1,10 @@
 <div class="container">
   <%= render 'layouts/flash_messages' %>
   <div id="travel-journal" class="row">
-    <div class="span5">
+    <div class="span12">
       <h1>Travel Journal</h1>
+    </div>
+    <div class="span5">
       <% if current_user.log_entries.size > 0 %>
         <h3>You have traveled to <%= pluralize(current_user.log_entries.size,'Destination') %></h3>
         <table id= "travel-log" class="table table-striped">
