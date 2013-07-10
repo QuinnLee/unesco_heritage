@@ -34,3 +34,17 @@ a.location:hover{
 .center{
   padding-left: 35px;
 }
+
+body{
+  padding-top: 50px;
+}
+body.home{
+  padding-top: 0px;
+}
+
+footer{
+  padding-top: 30px;
+  li{
+    padding: 0px 17px 0px 15px;
+  }
+}
