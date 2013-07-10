@@ -16,3 +16,5 @@ Features That I am Working on:
 + Social aspect e.g. sharing plans
 + using WIKI for more data
 + Gamification
++ Using PostGIS as a DB
++ Expanding the DB
