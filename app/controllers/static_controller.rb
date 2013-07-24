@@ -8,6 +8,8 @@ class StaticController < ApplicationController
     if signed_in?
       flash.keep
       redirect_to locations_path
+    else
+      flash[:notice] = "Sample account email:foobar@barfoo.com  pw:foobar12"
     end
   end
 

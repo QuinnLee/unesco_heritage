@@ -1,9 +1,6 @@
-<div class="container">
-    <%= render 'layouts/flash_messages' %>
-</div>
-
 <div class="row launch-banner">
   <div class="container">
+    <%= render 'layouts/flash_messages' %>
     <div id="sign_up" class="offset11 span3 form">
       <h2>Sign up</h2>
       <%= simple_form_for('user', url: user_registration_path, html: {id:'sign_up'}) do |f| %>
